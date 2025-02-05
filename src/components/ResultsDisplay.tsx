@@ -3,9 +3,17 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
+export type QueryIntent = 
+  | "boolean" | "consequence" | "instruction" | "comparison"
+  | "definition" | "reason" | "shortFact" | "opinion"
+  | "prediction" | "locationBased" | "temporal" | "hypothetical"
+  | "procedural" | "exploratory" | "confirmation" | "creative"
+  | "technical" | "emotional" | "entertainment" | "historical"
+  | "scientific" | "personal" | "cultural" | "other";
+
 export interface KeywordResult {
   keyword: string;
-  intent: "informational" | "commercial" | "navigational" | "transactional";
+  intent: QueryIntent;
 }
 
 interface ResultsDisplayProps {
@@ -37,10 +45,30 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   }));
 
   const COLORS = {
-    informational: "#3b82f6",
-    commercial: "#10b981",
-    navigational: "#8b5cf6",
-    transactional: "#f59e0b",
+    boolean: "#3b82f6",
+    consequence: "#10b981",
+    instruction: "#8b5cf6",
+    comparison: "#f59e0b",
+    definition: "#ef4444",
+    reason: "#6366f1",
+    shortFact: "#14b8a6",
+    opinion: "#ec4899",
+    prediction: "#84cc16",
+    locationBased: "#06b6d4",
+    temporal: "#8b5cf6",
+    hypothetical: "#f97316",
+    procedural: "#0ea5e9",
+    exploratory: "#d946ef",
+    confirmation: "#22c55e",
+    creative: "#eab308",
+    technical: "#3b82f6",
+    emotional: "#ec4899",
+    entertainment: "#f59e0b",
+    historical: "#6366f1",
+    scientific: "#14b8a6",
+    personal: "#d946ef",
+    cultural: "#0ea5e9",
+    other: "#64748b"
   };
 
   return (
@@ -87,7 +115,8 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
               >
                 <span className="font-medium">{result.keyword}</span>
                 <span
-                  className={`px-3 py-1 rounded-full text-sm font-medium text-white bg-intent-${result.intent}`}
+                  className="px-3 py-1 rounded-full text-sm font-medium text-white"
+                  style={{ backgroundColor: COLORS[result.intent] }}
                 >
                   {result.intent.charAt(0).toUpperCase() + result.intent.slice(1)}
                 </span>

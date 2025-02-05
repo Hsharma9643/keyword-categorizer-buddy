@@ -47,13 +47,7 @@ export default {
         card: {
           DEFAULT: "#ffffff",
           foreground: "#0f172a",
-        },
-        intent: {
-          informational: "#3b82f6",
-          commercial: "#10b981",
-          navigational: "#8b5cf6",
-          transactional: "#f59e0b",
-        },
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
