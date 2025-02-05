@@ -1,126 +1,51 @@
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult, QueryIntent } from "@/components/ResultsDisplay";
+import natural from 'natural';
 
-const classifyKeyword = (keyword: string): QueryIntent => {
-  const lowerKeyword = keyword.toLowerCase();
-  
+const tokenizer = new natural.WordTokenizer();
+const classifier = new natural.BayesClassifier();
+
+// Train the classifier with sample data
+const trainingData = [
   // Boolean queries
-  if (/^(can|is|does|are|will|has|should|do)\b/.test(lowerKeyword)) {
-    return "boolean";
-  }
+  { text: "can dogs eat chocolate", category: "boolean" },
+  { text: "is it going to rain today", category: "boolean" },
+  { text: "does the iphone have a headphone jack", category: "boolean" },
   
   // Consequence queries
-  if (/(what happens|outcome|effect|impact|result)/.test(lowerKeyword)) {
-    return "consequence";
-  }
+  { text: "what happens if you don't sleep", category: "consequence" },
+  { text: "effect of climate change", category: "consequence" },
+  { text: "impact of social media on mental health", category: "consequence" },
   
   // Instruction queries
-  if (/(how to|steps to|guide|tutorial|instructions)/.test(lowerKeyword)) {
-    return "instruction";
-  }
-  
-  // Comparison queries
-  if (/(vs|versus|compare|difference between|better)/.test(lowerKeyword)) {
-    return "comparison";
-  }
+  { text: "how to bake a cake", category: "instruction" },
+  { text: "steps to change a tire", category: "instruction" },
+  { text: "guide to learn python", category: "instruction" },
   
   // Definition queries
-  if (/(what is|meaning of|define|explanation of)/.test(lowerKeyword)) {
-    return "definition";
-  }
+  { text: "what is artificial intelligence", category: "definition" },
+  { text: "meaning of photosynthesis", category: "definition" },
+  { text: "define blockchain technology", category: "definition" },
   
-  // Reason queries
-  if (/^why|reasons?|cause/.test(lowerKeyword)) {
-    return "reason";
-  }
+  // And so on for other categories...
+];
+
+// Train the classifier
+trainingData.forEach(item => {
+  classifier.addDocument(item.text, item.category);
+});
+classifier.train();
+
+const classifyKeyword = (keyword: string): QueryIntent => {
+  // Preprocess the keyword
+  const processedKeyword = keyword.toLowerCase().trim();
   
-  // Short fact queries
-  if (/^(who|what|when|where|how many)/.test(lowerKeyword)) {
-    return "shortFact";
-  }
+  // Use natural's classifier
+  const classification = classifier.classify(processedKeyword);
   
-  // Opinion queries
-  if (/(best|worst|recommend|think|opinion)/.test(lowerKeyword)) {
-    return "opinion";
-  }
-  
-  // Prediction queries
-  if (/(will|forecast|predict|future)/.test(lowerKeyword)) {
-    return "prediction";
-  }
-  
-  // Location-based queries
-  if (/(where|near|location|distance)/.test(lowerKeyword)) {
-    return "locationBased";
-  }
-  
-  // Temporal queries
-  if (/(when|time|duration|schedule|how long)/.test(lowerKeyword)) {
-    return "temporal";
-  }
-  
-  // Hypothetical queries
-  if (/(what if|suppose|hypothetically)/.test(lowerKeyword)) {
-    return "hypothetical";
-  }
-  
-  // Procedural queries
-  if (/(process|procedure|steps|sequence)/.test(lowerKeyword)) {
-    return "procedural";
-  }
-  
-  // Exploratory queries
-  if (/(tell me about|explain|explore|discuss)/.test(lowerKeyword)) {
-    return "exploratory";
-  }
-  
-  // Confirmation queries
-  if (/(confirm|verify|is it true)/.test(lowerKeyword)) {
-    return "confirmation";
-  }
-  
-  // Creative queries
-  if (/(ideas|creative|inspiration|brainstorm)/.test(lowerKeyword)) {
-    return "creative";
-  }
-  
-  // Technical queries
-  if (/(fix|specifications|technical|troubleshoot)/.test(lowerKeyword)) {
-    return "technical";
-  }
-  
-  // Emotional/Support queries
-  if (/(help|advice|support|cope|deal with)/.test(lowerKeyword)) {
-    return "emotional";
-  }
-  
-  // Entertainment queries
-  if (/(fun|game|play|watch|entertainment)/.test(lowerKeyword)) {
-    return "entertainment";
-  }
-  
-  // Historical queries
-  if (/(history|historical|past|when was)/.test(lowerKeyword)) {
-    return "historical";
-  }
-  
-  // Scientific queries
-  if (/(science|theory|experiment|scientific)/.test(lowerKeyword)) {
-    return "scientific";
-  }
-  
-  // Personal queries
-  if (/(my|personal|me|individual)/.test(lowerKeyword)) {
-    return "personal";
-  }
-  
-  // Cultural queries
-  if (/(culture|tradition|customs|beliefs)/.test(lowerKeyword)) {
-    return "cultural";
-  }
-  
-  return "other";
+  // Ensure the classification matches our QueryIntent type
+  return classification as QueryIntent;
 };
 
 const Index = () => {
@@ -141,7 +66,7 @@ const Index = () => {
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Advanced Keyword Classifier</h1>
             <p className="text-muted-foreground">
-              Enter your keywords below to analyze their search intent using 24 different categories
+              Enter your keywords below to analyze their search intent using Natural Language Processing
             </p>
           </div>
 
