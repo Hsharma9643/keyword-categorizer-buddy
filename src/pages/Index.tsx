@@ -13,6 +13,7 @@ const patterns = {
   shortFact: /(when|where|who|which|what(?! is)|how many|how much)/i,
   opinion: /(best|better|worst|should i|recommend|review)/i,
   prediction: /(will|future|predict|forecast|upcoming|next)/i,
+  personal: /(my|for me|personal|individual|your|yourself|mine|our|we|us)/i,
 };
 
 const classifyKeyword = (keyword: string): QueryIntent => {
