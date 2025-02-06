@@ -159,21 +159,21 @@ const Index = () => {
               className="p-2 rounded-full hover:bg-muted transition-colors"
               aria-label="Share on X (formerly Twitter)"
             >
-              <X className="w-5 h-5 text-foreground" />
+              <X strokeWidth={1.5} className="w-5 h-5 text-foreground" />
             </button>
             <button
               onClick={() => handleShare('facebook')}
               className="p-2 rounded-full hover:bg-muted transition-colors"
               aria-label="Share on Facebook"
             >
-              <Facebook className="w-5 h-5 text-foreground" />
+              <Facebook strokeWidth={1.5} className="w-5 h-5 text-foreground" />
             </button>
             <button
               onClick={() => handleShare('linkedin')}
               className="p-2 rounded-full hover:bg-muted transition-colors"
               aria-label="Share on LinkedIn"
             >
-              <Linkedin className="w-5 h-5 text-foreground" />
+              <Linkedin strokeWidth={1.5} className="w-5 h-5 text-foreground" />
             </button>
           </div>
         </div>
