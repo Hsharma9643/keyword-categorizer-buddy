@@ -150,7 +150,7 @@ const Index = () => {
           </div>
 
           <div className="text-center text-sm text-muted-foreground">
-            <p>Disclaimer: This tool and the content on this page were created using DeepSeek, ChatGPT, and Lovable.dev.</p>
+            <p>This page's content was created using DeepSeek.</p>
           </div>
 
           <div className="flex justify-center space-x-4 pb-8">
