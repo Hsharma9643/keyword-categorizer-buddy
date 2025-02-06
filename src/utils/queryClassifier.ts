@@ -1,41 +1,54 @@
-import { pipeline } from "@huggingface/transformers";
-
 export type QueryIntent = 
-  | "boolean" | "consequence" | "instruction" | "comparison"
-  | "definition" | "reason" | "shortFact" | "other";
+  | "informational" 
+  | "navigational" 
+  | "transactional" 
+  | "commercial";
 
-let classifier: any = null;
-
-export const initializeClassifier = async () => {
-  if (!classifier) {
-    classifier = await pipeline(
-      "text-classification",
-      "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
-      { device: "cpu" }
-    );
-  }
-  return classifier;
-};
-
-const intentMapping: Record<string, QueryIntent> = {
-  "LABEL_0": "boolean",
-  "LABEL_1": "consequence",
-  "LABEL_2": "instruction",
-  "LABEL_3": "comparison",
-  "LABEL_4": "definition",
-  "LABEL_5": "reason",
-  "LABEL_6": "shortFact",
-  "LABEL_7": "other"
-};
-
+// Simple rule-based classifier similar to the reference app
 export const classifyQuery = async (query: string): Promise<QueryIntent> => {
-  try {
-    const clf = await initializeClassifier();
-    const result = await clf(query);
-    console.log("Classification result:", result);
-    return intentMapping[result[0].label] || "other";
-  } catch (error) {
-    console.error("Classification error:", error);
-    return "other";
+  query = query.toLowerCase();
+  
+  // Transactional patterns
+  if (
+    query.includes("buy") ||
+    query.includes("purchase") ||
+    query.includes("order") ||
+    query.includes("shop") ||
+    query.includes("deal") ||
+    query.includes("price") ||
+    query.includes("cost")
+  ) {
+    return "transactional";
   }
+
+  // Commercial patterns
+  if (
+    query.includes("best") ||
+    query.includes("review") ||
+    query.includes("compare") ||
+    query.includes("vs") ||
+    query.includes("versus") ||
+    query.includes("top") ||
+    query.includes("cheap") ||
+    query.includes("cheapest")
+  ) {
+    return "commercial";
+  }
+
+  // Navigational patterns
+  if (
+    query.includes("login") ||
+    query.includes("sign in") ||
+    query.includes("website") ||
+    query.includes("site") ||
+    query.includes(".com") ||
+    query.includes(".org") ||
+    query.includes(".net") ||
+    query.includes("official")
+  ) {
+    return "navigational";
+  }
+
+  // Default to informational
+  return "informational";
 };

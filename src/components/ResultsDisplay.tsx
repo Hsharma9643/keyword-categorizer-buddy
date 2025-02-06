@@ -4,8 +4,10 @@ import { useToast } from "@/components/ui/use-toast";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 
 export type QueryIntent = 
-  | "boolean" | "consequence" | "instruction" | "comparison"
-  | "definition" | "reason" | "shortFact" | "other";
+  | "informational" 
+  | "navigational" 
+  | "transactional" 
+  | "commercial";
 
 export interface KeywordResult {
   keyword: string;
@@ -41,14 +43,10 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   }));
 
   const COLORS = {
-    boolean: "#22c55e",     // Green
-    consequence: "#15803d", // Dark Green
-    instruction: "#86efac", // Light Green
-    comparison: "#4ade80",  // Medium Green
-    definition: "#16a34a",  // Forest Green
-    reason: "#166534",      // Deep Green
-    shortFact: "#bbf7d0",   // Pale Green
-    other: "#dcfce7"        // Mint Green
+    informational: "#3b82f6",  // Blue
+    navigational: "#10b981",   // Green
+    transactional: "#f59e0b",  // Yellow
+    commercial: "#8b5cf6"      // Purple
   };
 
   return (
@@ -98,7 +96,8 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                 <span
                   className="px-3 py-1 rounded-full text-sm font-medium"
                   style={{
-                    color: COLORS[result.intent],
+                    backgroundColor: COLORS[result.intent],
+                    color: 'white'
                   }}
                 >
                   {result.intent.charAt(0).toUpperCase() + result.intent.slice(1)}
