@@ -40,15 +40,16 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     value,
   }));
 
+  // Updated color palette with green theme and distinct colors for each category
   const COLORS = {
-    boolean: "#3b82f6",
-    consequence: "#10b981",
-    instruction: "#8b5cf6",
-    comparison: "#f59e0b",
-    definition: "#ef4444",
-    reason: "#6366f1",
-    shortFact: "#14b8a6",
-    other: "#64748b"
+    boolean: "#22c55e",     // Green-500
+    consequence: "#86efac", // Green-300
+    instruction: "#4ade80", // Green-400
+    comparison: "#16a34a",  // Green-600
+    definition: "#15803d",  // Green-700
+    reason: "#166534",      // Green-800
+    shortFact: "#14532d",   // Green-900
+    other: "#dcfce7"        // Green-100
   };
 
   return (
@@ -95,11 +96,9 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
               >
                 <span className="font-medium">{result.keyword}</span>
                 <span
-                  className="px-3 py-1 rounded-full text-sm font-medium"
+                  className="px-3 py-1 rounded-full text-sm font-medium text-white"
                   style={{
                     backgroundColor: COLORS[result.intent],
-                    color: '#000000',
-                    textShadow: 'none'
                   }}
                 >
                   {result.intent.charAt(0).toUpperCase() + result.intent.slice(1)}
