@@ -48,7 +48,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
 
   const COLORS = {
     boolean: "#1A1F2C",     // Dark Purple
-    consequence: "#403E43", // Dark Charcoal
+    consequence: "#ea384c", // Cardinal Red alternative
     instruction: "#222222", // Dark Gray
     comparison: "#333333",  // Dark Gray
     definition: "#555555",  // Dark Gray
@@ -60,7 +60,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   return (
     <div className="space-y-6">
       <Card className="p-6">
-        <div className="h-[300px] text-gray-800"> {/* Added darker text color */}
+        <div className="h-[300px] text-gray-800">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
