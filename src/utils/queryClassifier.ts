@@ -84,15 +84,20 @@ export const classifyQuery = async (query: string): Promise<QueryIntent> => {
     return "reason";
   }
 
-  // Short Fact patterns
+  // Short Fact patterns - Updated with more precise patterns
   if (
     query.startsWith("who") ||
     query.startsWith("when") ||
     query.startsWith("where") ||
     query.startsWith("how many") ||
     query.startsWith("how much") ||
-    query.includes("list") ||
-    query.includes("name")
+    query.startsWith("which") ||
+    query.match(/^what.*(?:date|year|time|number|amount|percentage|rate)/i) ||
+    query.match(/^(capital|population|height|weight|distance|size) of/i) ||
+    query.match(/^(list|name|give|tell).*(?:countries|cities|people|numbers)/i) ||
+    // Match queries that look like they're asking for a direct fact
+    query.match(/^[a-z\s]+ of [a-z\s]+$/i) || // e.g. "capital of France"
+    query.match(/^(tallest|shortest|biggest|smallest|longest|highest|lowest)/i)
   ) {
     return "shortFact";
   }
