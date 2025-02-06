@@ -24,35 +24,43 @@ export const KeywordInput = ({ onAnalyze }: KeywordInputProps) => {
 
 BOOLEAN (Is, Are, Can, Does, Do, Will):
 Is artificial intelligence dangerous?
-Are electric cars better for the environment?
+Are electric cars better?
+Can humans live on Mars?
 
 CONSEQUENCE (What happens, Effect, Impact):
 What happens during photosynthesis?
 Effect of social media on mental health
+Impact of climate change
 
 INSTRUCTION (How to, Steps to, Guide):
 How to make a chocolate cake?
 Steps to change a car tire
+Guide to meditation
 
 COMPARISON (vs, versus, compared to):
 iPhone vs Android
 MacBook compared to Windows laptop
+Tea vs Coffee
 
 DEFINITION (What is, Define, Meaning):
 What is quantum computing?
 Define photosynthesis
+Meaning of life
 
 REASON (Why, Cause, Explain why):
 Why do leaves change color?
 Why is the sky blue?
+Why do we dream?
 
 SHORT FACT (Where, Who, When, Which):
 When was the internet invented?
 Who invented the telephone?
+Where is the Great Wall?
 
 OTHER:
 Tell me a joke
-Random fact"
+Random fact
+Give me inspiration"
         className="min-h-[200px] font-mono text-sm"
         value={input}
         onChange={(e) => setInput(e.target.value)}
