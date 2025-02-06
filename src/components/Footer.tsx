@@ -8,6 +8,16 @@ const Footer = () => {
       <div className="container flex items-center justify-center text-sm text-muted-foreground">
         <span>A tool by</span>
         <a
+          href="https://www.linkedin.com/in/hemantsharmax/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-1 inline-flex items-center text-primary hover:underline"
+        >
+          Hemant Sharma
+          <ExternalLink className="ml-1 h-3 w-3" />
+        </a>
+        <span className="ml-1">at</span>
+        <a
           href="https://www.adschoolmaster.com"
           target="_blank"
           rel="noopener noreferrer"
