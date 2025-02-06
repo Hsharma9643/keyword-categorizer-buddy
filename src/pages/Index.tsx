@@ -4,8 +4,8 @@ import { ResultsDisplay, KeywordResult, QueryIntent } from "@/components/Results
 
 // Pattern matching rules for classification
 const patterns = {
-  // Emotional needs to come before instruction to catch emotional support queries first
-  emotional: /(how to (deal|cope) with|feeling (sad|anxious|depressed|lonely|overwhelmed)|mental health|emotional|therapy|counseling|grief|anxiety|depression|stress|trauma|support group|self-care|meditation|mindfulness|healing|relationship advice|heartbreak|breakup|emotions|worried|upset|panic|fear)/i,
+  // Emotional needs to come before shortFact to catch emotional support queries first
+  emotional: /(how to (deal|cope) with|what to (say|do) .*(grief|grieving|sad|anxious|depressed|lonely)|feeling (sad|anxious|depressed|lonely|overwhelmed)|mental health|emotional|therapy|counseling|grief|anxiety|depression|stress|trauma|support group|self-care|meditation|mindfulness|healing|relationship advice|heartbreak|breakup|emotions|worried|upset|panic|fear)/i,
   historical: /(history|historical|past|when was|ancient|origin|caused.*war|world war|empire|civilization|century|decade|era|dynasty|period|timeline|heritage)/i,
   boolean: /^(is|are|can|does|do|will|should|has|have)/i,
   consequence: /(what happens|effect|impact|result|outcome|consequence)/i,
@@ -14,7 +14,7 @@ const patterns = {
   scientific: /(theory|scientific|physics|chemistry|biology|hypothesis|experiment|quantum|molecule|atom|cell|evolution|science|laboratory)/i,
   definition: /(what is|define|meaning|definition|explain|describe)/i,
   reason: /(why|reason|cause|explain why)/i,
-  shortFact: /(where|who|which|what(?! is)|how many|how much)/i,
+  shortFact: /(where|who|which|what(?! (to|is))|how many|how much)/i,
   opinion: /(best|better|worst|should i|recommend|review)/i,
   prediction: /(will|future|predict|forecast|upcoming|next)/i,
   personal: /(my|for me|personal|individual|your|yourself|mine|our|we|us)/i,
