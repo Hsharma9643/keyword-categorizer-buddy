@@ -134,6 +134,10 @@ const Index = () => {
           </div>
 
           {results.length > 0 && <ResultsDisplay results={results} />}
+
+          <div className="text-center text-sm text-muted-foreground">
+            <p>Disclaimer: This tool and the content on this page were created using DeepSeek, ChatGPT, and Lovable.dev.</p>
+          </div>
         </div>
       </div>
       <Footer />
