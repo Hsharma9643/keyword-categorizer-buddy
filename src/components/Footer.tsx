@@ -120,6 +120,14 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a 
+                  href="https://www.adschoolmaster.com/about/" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a 
                   href="https://www.adschoolmaster.com/seo-consulting/" 
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
