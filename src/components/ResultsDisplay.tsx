@@ -118,8 +118,8 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   className="px-3 py-1 rounded-full text-sm font-medium"
                   style={{
                     backgroundColor: COLORS[result.intent],
-                    color: '#ffffff',
-                    textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
+                    color: '#000000',
+                    textShadow: 'none'
                   }}
                 >
                   {result.intent.charAt(0).toUpperCase() + result.intent.slice(1)}
