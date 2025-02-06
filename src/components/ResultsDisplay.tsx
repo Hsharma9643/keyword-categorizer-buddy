@@ -53,7 +53,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     comparison: "#40E0D0",  // Caribbean Green
     definition: "#3E2723",  // Dark Brown
     reason: "#E0115F",      // Ruby color
-    shortFact: "transparent", // Transparent background
+    shortFact: "#F4C430",   // Saffron
     other: "#8A898C"        // Medium Gray
   };
 
