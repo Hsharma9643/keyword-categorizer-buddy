@@ -16,7 +16,7 @@ const Footer = () => {
               className="h-16 w-auto"
             />
             <p className="text-sm text-gray-300">
-              AdSchoolMaster is your go-to resource for mastering digital marketing and SEO.
+              SEO focused, Simplified Digital Marketing Training and Consulting
             </p>
           </div>
 
