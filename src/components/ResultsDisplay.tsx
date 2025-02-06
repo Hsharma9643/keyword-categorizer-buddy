@@ -47,20 +47,20 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   }));
 
   const COLORS = {
-    boolean: "#22c55e",     // Green
-    consequence: "#15803d", // Dark Green
-    instruction: "#86efac", // Light Green
-    comparison: "#4ade80",  // Medium Green
-    definition: "#16a34a",  // Forest Green
-    reason: "#166534",      // Deep Green
+    boolean: "#1A1F2C",     // Dark Purple
+    consequence: "#403E43", // Dark Charcoal
+    instruction: "#222222", // Dark Gray
+    comparison: "#333333",  // Dark Gray
+    definition: "#555555",  // Dark Gray
+    reason: "#2226",       // Dark Gray
     shortFact: "transparent", // Transparent background
-    other: "#dcfce7"        // Mint Green
+    other: "#8A898C"        // Medium Gray
   };
 
   return (
     <div className="space-y-6">
       <Card className="p-6">
-        <div className="h-[300px]">
+        <div className="h-[300px] text-gray-800"> {/* Added darker text color */}
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -79,8 +79,8 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   />
                 ))}
               </Pie>
-              <Tooltip />
-              <Legend />
+              <Tooltip contentStyle={{ backgroundColor: '#333', color: '#fff' }} />
+              <Legend formatter={(value) => <span style={{ color: '#333' }}>{value}</span>} />
             </PieChart>
           </ResponsiveContainer>
         </div>
