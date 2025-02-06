@@ -5,20 +5,21 @@ import { ResultsDisplay, KeywordResult, QueryIntent } from "@/components/Results
 
 // Pattern matching rules for classification
 const patterns = {
+  // Move historical early to take precedence
+  historical: /(history|historical|past|when was|ancient|origin|caused.*war|world war|empire|civilization|century|decade|era|dynasty|period|timeline|heritage)/i,
   boolean: /^(is|are|can|does|do|will|should|has|have)/i,
   consequence: /(what happens|effect|impact|result|outcome|consequence)/i,
   instruction: /(how to|steps|guide|tutorial|process|way to|improve|enhance|boost|increase|optimize|master|learn|tips|advice)/i,
-  // Move scientific before definition to take precedence
   scientific: /(theory|scientific|physics|chemistry|biology|hypothesis|experiment|quantum|molecule|atom|cell|evolution|science|laboratory)/i,
   definition: /(what is|define|meaning|definition|explain|describe)/i,
   reason: /(why|reason|cause|explain why)/i,
-  shortFact: /(when|where|who|which|what(?! is)|how many|how much)/i,
+  shortFact: /(where|who|which|what(?! is)|how many|how much)/i,
   opinion: /(best|better|worst|should i|recommend|review)/i,
   prediction: /(will|future|predict|forecast|upcoming|next)/i,
   personal: /(my|for me|personal|individual|your|yourself|mine|our|we|us)/i,
   comparison: /(vs|versus|compared to|difference between|better|which is better|compare)/i,
   location: /(near|nearby|distance|location|directions|where is|closest)/i,
-  temporal: /(when|how long|schedule|duration|time|hours|minutes|days)/i,
+  temporal: /(when(?! was)|how long|schedule|duration|time|hours|minutes|days)/i,
   hypothetical: /(what if|if|suppose|hypothetically|assuming|imagine)/i,
   opinionVsFact: /(is it true|actually|really|fact|prove|evidence|opinion|think|feel about)/i,
   procedural: /(process|steps|procedure|sequence|how to|method|way to)/i,
@@ -27,7 +28,6 @@ const patterns = {
   technical: /(fix|specifications|technical|troubleshoot|error|bug|issue)/i,
   emotional: /(how to deal with|advice|support|help with|cope|feeling|anxiety|stress)/i,
   entertainment: /(funny|movies|games|entertainment|fun|play|watch)/i,
-  historical: /(history|historical|past|when was|ancient|origin)/i,
 };
 
 const classifyKeyword = (keyword: string): QueryIntent => {
