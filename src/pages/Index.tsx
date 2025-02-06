@@ -4,6 +4,7 @@ import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
 import { classifyQuery } from "@/utils/queryClassifier";
 import { useToast } from "@/components/ui/use-toast";
 import Footer from "@/components/Footer";
+import { Facebook, Linkedin, Twitter } from "lucide-react";
 
 const Index = () => {
   const [results, setResults] = useState<KeywordResult[]>([]);
@@ -25,6 +26,19 @@ const Index = () => {
         variant: "destructive",
       });
     }
+  };
+
+  const handleShare = (platform: string) => {
+    const url = window.location.href;
+    const text = "Check out this free SEO Keyword Intent Classifier Tool!";
+    
+    const shareUrls = {
+      twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`
+    };
+
+    window.open(shareUrls[platform as keyof typeof shareUrls], '_blank');
   };
 
   return (
@@ -137,6 +151,30 @@ const Index = () => {
 
           <div className="text-center text-sm text-muted-foreground">
             <p>Disclaimer: This tool and the content on this page were created using DeepSeek, ChatGPT, and Lovable.dev.</p>
+          </div>
+
+          <div className="flex justify-center space-x-4 pb-8">
+            <button
+              onClick={() => handleShare('twitter')}
+              className="p-2 rounded-full hover:bg-muted transition-colors"
+              aria-label="Share on Twitter"
+            >
+              <Twitter className="w-6 h-6 text-[#1DA1F2]" />
+            </button>
+            <button
+              onClick={() => handleShare('facebook')}
+              className="p-2 rounded-full hover:bg-muted transition-colors"
+              aria-label="Share on Facebook"
+            >
+              <Facebook className="w-6 h-6 text-[#1877F2]" />
+            </button>
+            <button
+              onClick={() => handleShare('linkedin')}
+              className="p-2 rounded-full hover:bg-muted transition-colors"
+              aria-label="Share on LinkedIn"
+            >
+              <Linkedin className="w-6 h-6 text-[#0A66C2]" />
+            </button>
           </div>
         </div>
       </div>
