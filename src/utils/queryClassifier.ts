@@ -10,7 +10,7 @@ export const initializeClassifier = async () => {
   if (!classifier) {
     classifier = await pipeline(
       "text-classification",
-      "onnx-community/distilbert-base-uncased-finetuned-sst-2-english",
+      "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
       { device: "cpu" }
     );
   }
