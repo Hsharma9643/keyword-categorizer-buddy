@@ -87,30 +87,6 @@ const Footer = () => {
                   SEO Glossary
                 </a>
               </li>
-              <li>
-                <a 
-                  href="https://www.adschoolmaster.com/contact/" 
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
-                >
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="https://www.adschoolmaster.com/privacy-policy/" 
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
-                >
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="https://www.adschoolmaster.com/terms/" 
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
-                >
-                  Terms of Service
-                </a>
-              </li>
             </ul>
           </div>
 
