@@ -55,7 +55,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     definition: "#3E2723",  // Dark Brown
     reason: "#E0115F",      // Ruby color
     shortFact: "#F4C430",   // Saffron
-    other: "#8A898C"        // Medium Gray
+    other: "#8B5CF6"        // Vivid Purple
   };
 
   return (
