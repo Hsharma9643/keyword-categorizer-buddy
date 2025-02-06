@@ -114,7 +114,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Company Section (previously Contact) */}
+          {/* Company Section */}
           <div>
             <h3 className="font-semibold mb-4 text-lg">Company</h3>
             <ul className="space-y-2">
@@ -133,12 +133,6 @@ const Footer = () => {
                 >
                   Contact
                 </a>
-              </li>
-              <li className="text-sm text-gray-300">
-                Email: hello@adschoolmaster.com
-              </li>
-              <li className="text-sm text-gray-300">
-                Location: India
               </li>
             </ul>
           </div>
