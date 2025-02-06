@@ -13,7 +13,7 @@ const Footer = () => {
           rel="noopener noreferrer"
           className="ml-1 inline-flex items-center text-primary hover:underline"
         >
-          AdSchool Master
+          AdSchoolMaster
           <ExternalLink className="ml-1 h-3 w-3" />
         </a>
       </div>
