@@ -115,8 +115,12 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
               >
                 <span className="font-medium">{result.keyword}</span>
                 <span
-                  className="px-3 py-1 rounded-full text-sm font-medium text-white"
-                  style={{ backgroundColor: COLORS[result.intent] }}
+                  className="px-3 py-1 rounded-full text-sm font-medium"
+                  style={{
+                    backgroundColor: COLORS[result.intent],
+                    color: '#ffffff',
+                    textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
+                  }}
                 >
                   {result.intent.charAt(0).toUpperCase() + result.intent.slice(1)}
                 </span>
