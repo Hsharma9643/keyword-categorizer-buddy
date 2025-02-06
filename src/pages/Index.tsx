@@ -5,6 +5,7 @@ import { ResultsDisplay, KeywordResult, QueryIntent } from "@/components/Results
 // Pattern matching rules for classification
 const patterns = {
   opinionVsFact: /^(is|are|was|were|do|does|can|could|should|would|will|has|have|had).*(true|false|real|fake|right|wrong|correct|incorrect|valid|invalid|proven|disproven|fact|opinion|evidence|scientific|consensus|studies show|research|according to|verified|debunked|controversial|debate|disputed|contested|objective|subjective|agree|disagree|think|believe|feel|prefer|like|enjoy|better|worse|good|bad|best|worst)/i,
+  hypothetical: /(what if|if (?!.*true|false)|suppose|hypothetically|assuming|imagine|would.*if|could.*if|will.*if|might.*if)/i,
   exploratory: /(tell me about|explain|what are|describe) .*/i,
   creative: /(ideas?|creative|inspiration|brainstorm|imagine|design|innovative|unique ways|suggest|come up with|story ideas?|writing prompts?|artistic|inventive)/i,
   confirmation: /^(confirm|verify|did|actually|really|can you confirm|has.*been|have.*been|was.*done|were.*done|can (you )?confirm)/i,
