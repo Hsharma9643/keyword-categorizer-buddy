@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="mt-12 pb-6">
       <Separator className="mb-6" />
-      <div className="container flex flex-col sm:flex-row items-center justify-center text-sm text-muted-foreground gap-1 sm:gap-0">
+      <div className="container flex items-center justify-center text-sm text-muted-foreground">
         <span>A tool by</span>
         <a
           href="https://www.linkedin.com/in/hemantsharmax/"
