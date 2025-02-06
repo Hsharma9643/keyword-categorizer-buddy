@@ -1,5 +1,6 @@
 
 import { Separator } from "./ui/separator";
+import { Facebook, Linkedin, Youtube, Twitter, Instagram } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,6 +25,48 @@ const Footer = () => {
             <p className="text-sm text-gray-300">
               SEO focused, Simplified Digital Marketing Training and Consulting
             </p>
+            <div className="flex space-x-4">
+              <a 
+                href="https://www.linkedin.com/school/adschoolmaster/?viewAsMember=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <Linkedin size={24} className="text-white" />
+              </a>
+              <a 
+                href="https://www.facebook.com/AdSchoolMaster/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <Facebook size={24} className="text-white" />
+              </a>
+              <a 
+                href="https://www.youtube.com/c/AdSchoolMaster"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <Youtube size={24} className="text-white" />
+              </a>
+              <a 
+                href="https://x.com/adschoolmaster?lang=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <Twitter size={24} className="text-white" />
+              </a>
+              <a 
+                href="https://www.instagram.com/adschoolmaster/?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <Instagram size={24} className="text-white" />
+              </a>
+            </div>
           </div>
 
           {/* Learn Section */}
