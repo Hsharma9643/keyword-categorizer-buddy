@@ -126,7 +126,7 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-            <div className="flex space-x-4 mt-4">
+            <div className="flex space-x-4 mt-[100px]">
               <a 
                 href="https://www.linkedin.com/school/adschoolmaster/?viewAsMember=true"
                 target="_blank"
@@ -196,3 +196,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
