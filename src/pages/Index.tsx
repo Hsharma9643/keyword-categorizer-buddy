@@ -47,6 +47,55 @@ const Index = () => {
             </p>
           </div>
 
+          <div className="bg-muted rounded-lg p-6">
+            <h2 className="text-xl font-semibold mb-4">Keyword Intent Categories & Their Meaning</h2>
+            <p className="text-muted-foreground mb-6">
+              The eight categories used in this tool classify user queries based on their linguistic structure and intent. Understanding these categories helps predict the type of response users expect, making it easier to optimize content for search engines.
+            </p>
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-semibold mb-2">1. Boolean</h3>
+                <p className="text-muted-foreground">✔️ Identifies Yes/No or True/False queries.</p>
+                <p className="text-muted-foreground">🔹 Example: "Can dogs eat chocolate?"</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">2. Consequence</h3>
+                <p className="text-muted-foreground">✔️ Analyzes queries about outcomes or effects.</p>
+                <p className="text-muted-foreground">🔹 Example: "What happens if you don't sleep for 24 hours?"</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">3. Instruction</h3>
+                <p className="text-muted-foreground">✔️ Detects step-by-step guides and tutorials.</p>
+                <p className="text-muted-foreground">🔹 Example: "How to bake a cake."</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">4. Comparison</h3>
+                <p className="text-muted-foreground">✔️ Recognizes queries comparing two or more entities.</p>
+                <p className="text-muted-foreground">🔹 Example: "iPhone 15 vs Samsung Galaxy S23."</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">5. Definition</h3>
+                <p className="text-muted-foreground">✔️ Finds queries asking for meanings or explanations.</p>
+                <p className="text-muted-foreground">🔹 Example: "What is artificial intelligence?"</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">6. Reason</h3>
+                <p className="text-muted-foreground">✔️ Identifies questions seeking causes or justifications.</p>
+                <p className="text-muted-foreground">🔹 Example: "Why is the sky blue?"</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">7. Short Fact</h3>
+                <p className="text-muted-foreground">✔️ Classifies factual questions expecting brief answers.</p>
+                <p className="text-muted-foreground">🔹 Example: "Who invented the telephone?"</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">8. Other</h3>
+                <p className="text-muted-foreground">✔️ Covers queries that don't fit standard categories.</p>
+                <p className="text-muted-foreground">🔹 Example: "Tell me a joke."</p>
+              </div>
+            </div>
+          </div>
+
           {results.length > 0 && <ResultsDisplay results={results} />}
         </div>
       </div>
