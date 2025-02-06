@@ -66,6 +66,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                 outerRadius={80}
                 fill="#8884d8"
                 dataKey="value"
+                label={({ name, value }) => `${name}: ${value}`}
               >
                 {chartData.map((entry, index) => (
                   <Cell
@@ -74,7 +75,11 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   />
                 ))}
               </Pie>
-              <Legend />
+              <Legend 
+                formatter={(value) => (
+                  <span style={{ color: 'white' }}>{value}</span>
+                )}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>
