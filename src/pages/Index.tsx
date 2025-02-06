@@ -1,15 +1,16 @@
-
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult, QueryIntent } from "@/components/ResultsDisplay";
 
 // Pattern matching rules for classification
 const patterns = {
-  // Move historical early to take precedence
+  // Emotional needs to come before instruction to catch emotional support queries first
+  emotional: /(how to (deal|cope) with|feeling (sad|anxious|depressed|lonely|overwhelmed)|mental health|emotional|therapy|counseling|grief|anxiety|depression|stress|trauma|support group|self-care|meditation|mindfulness|healing|relationship advice|heartbreak|breakup|emotions|worried|upset|panic|fear)/i,
   historical: /(history|historical|past|when was|ancient|origin|caused.*war|world war|empire|civilization|century|decade|era|dynasty|period|timeline|heritage)/i,
   boolean: /^(is|are|can|does|do|will|should|has|have)/i,
   consequence: /(what happens|effect|impact|result|outcome|consequence)/i,
-  instruction: /(how to|steps|guide|tutorial|process|way to|improve|enhance|boost|increase|optimize|master|learn|tips|advice)/i,
+  // Modified instruction pattern to exclude emotional support queries
+  instruction: /(how to(?! (deal|cope) with)|steps|guide|tutorial|process|way to|improve|enhance|boost|increase|optimize|master|learn|tips|advice)(?!.*(anxiety|depression|stress|emotional|mental health|grief))/i,
   scientific: /(theory|scientific|physics|chemistry|biology|hypothesis|experiment|quantum|molecule|atom|cell|evolution|science|laboratory)/i,
   definition: /(what is|define|meaning|definition|explain|describe)/i,
   reason: /(why|reason|cause|explain why)/i,
@@ -26,7 +27,6 @@ const patterns = {
   confirmation: /(is it true|confirm|verify|did|actually|really)/i,
   creative: /(ideas|creative|inspiration|brainstorm|imagine|design)/i,
   technical: /(fix|specifications|technical|troubleshoot|error|bug|issue)/i,
-  emotional: /(how to (deal|cope) with|feeling (sad|anxious|depressed|lonely|overwhelmed)|mental health|emotional|therapy|counseling|grief|anxiety|depression|stress|trauma|support group|self-care|meditation|mindfulness|healing|relationship advice|heartbreak|breakup|emotions|worried|upset|panic|fear)/i,
   entertainment: /(funny|fun|movies?|game|games|play|watch|stream|shows?|series|video|videos|entertainment|leisure|hobby|hobbies|activities|netflix|gaming|chess|sports?|music|dance|puzzle|puzzles|recreation|amusement|pastime)/i,
 };
 
