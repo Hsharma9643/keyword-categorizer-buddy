@@ -10,7 +10,7 @@ const patterns = {
   comparison: /(vs|versus|compared to|difference between|better|which is better|compare)/i,
   definition: /^(what is|define|meaning|definition|explain|describe)/i,
   reason: /^(why|reason|cause|explain why)/i,
-  shortFact: /^(where|who|which|what(?! (to|is))|how many|how much|when|how long)/i,
+  shortFact: /^(where|who|which|what(?! (to|is))|how many|how much)/i,
   other: /.*/
 };
 

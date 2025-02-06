@@ -41,34 +41,14 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   }));
 
   const COLORS = {
-    boolean: "#22c55e",     // Green-500
-    consequence: "#86efac", // Green-300
-    instruction: "#4ade80", // Green-400
-    comparison: "#16a34a",  // Green-600
-    definition: "#15803d",  // Green-700
-    reason: "#166534",      // Green-800
-    shortFact: "#14532d",   // Green-900
-    other: "#dcfce7"        // Green-100
-  };
-
-  const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, name, value }: any) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-      <text 
-        x={x} 
-        y={y} 
-        fill="#000000"
-        textAnchor={x > cx ? 'start' : 'end'} 
-        dominantBaseline="central"
-        fontSize="12"
-      >
-        {value}
-      </text>
-    );
+    boolean: "#3b82f6",
+    consequence: "#10b981",
+    instruction: "#8b5cf6",
+    comparison: "#f59e0b",
+    definition: "#ef4444",
+    reason: "#6366f1",
+    shortFact: "#14b8a6",
+    other: "#64748b"
   };
 
   return (
@@ -82,10 +62,9 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                outerRadius={100}
+                outerRadius={80}
                 fill="#8884d8"
                 dataKey="value"
-                label={renderCustomizedLabel}
               >
                 {chartData.map((entry, index) => (
                   <Cell
@@ -94,13 +73,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   />
                 ))}
               </Pie>
-              <Legend
-                verticalAlign="bottom"
-                height={36}
-                formatter={(value) => (
-                  <span style={{ color: '#000000', fontSize: '14px' }}>{value}</span>
-                )}
-              />
+              <Legend />
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -122,9 +95,11 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
               >
                 <span className="font-medium">{result.keyword}</span>
                 <span
-                  className="px-3 py-1 rounded-full text-sm font-medium text-white"
+                  className="px-3 py-1 rounded-full text-sm font-medium"
                   style={{
                     backgroundColor: COLORS[result.intent],
+                    color: '#000000',
+                    textShadow: 'none'
                   }}
                 >
                   {result.intent.charAt(0).toUpperCase() + result.intent.slice(1)}
