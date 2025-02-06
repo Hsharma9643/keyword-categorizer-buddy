@@ -130,8 +130,22 @@ const Footer = () => {
 
         {/* Copyright */}
         <Separator className="my-8 bg-gray-700" />
-        <div className="text-center text-sm text-gray-300">
+        <div className="flex justify-between items-center text-sm text-gray-300">
           <p>&copy; {currentYear} AdSchoolMaster. All rights reserved.</p>
+          <div className="space-x-4">
+            <a 
+              href="https://www.adschoolmaster.com/privacy-policy/" 
+              className="hover:text-white transition-colors"
+            >
+              Privacy Policy
+            </a>
+            <a 
+              href="https://www.adschoolmaster.com/terms-of-service/" 
+              className="hover:text-white transition-colors"
+            >
+              Terms of Service
+            </a>
+          </div>
         </div>
       </div>
     </footer>
@@ -139,3 +153,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
