@@ -126,14 +126,14 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-            <div className="flex space-x-4 mt-[100px]">
+            <div className="flex space-x-6 mt-[100px]">
               <a 
                 href="https://www.linkedin.com/school/adschoolmaster/?viewAsMember=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity"
               >
-                <Linkedin size={24} className="text-white" />
+                <Linkedin strokeWidth={1.5} className="w-5 h-5 text-white" />
               </a>
               <a 
                 href="https://www.facebook.com/AdSchoolMaster/"
@@ -141,7 +141,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity"
               >
-                <Facebook size={24} className="text-white" />
+                <Facebook strokeWidth={1.5} className="w-5 h-5 text-white" />
               </a>
               <a 
                 href="https://www.youtube.com/c/AdSchoolMaster"
@@ -149,7 +149,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity"
               >
-                <Youtube size={24} className="text-white" />
+                <Youtube strokeWidth={1.5} className="w-5 h-5 text-white" />
               </a>
               <a 
                 href="https://x.com/adschoolmaster?lang=en"
@@ -157,7 +157,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity"
               >
-                <Twitter size={24} className="text-white" />
+                <Twitter strokeWidth={1.5} className="w-5 h-5 text-white" />
               </a>
               <a 
                 href="https://www.instagram.com/adschoolmaster/?hl=en"
@@ -165,7 +165,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity"
               >
-                <Instagram size={24} className="text-white" />
+                <Instagram strokeWidth={1.5} className="w-5 h-5 text-white" />
               </a>
             </div>
           </div>
