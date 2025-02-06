@@ -52,7 +52,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     instruction: "#ADD8E6", // Ice Blue
     comparison: "#40E0D0",  // Caribbean Green
     definition: "#3E2723",  // Dark Brown
-    reason: "#2226",       // Dark Gray
+    reason: "#E0115F",      // Ruby color
     shortFact: "transparent", // Transparent background
     other: "#8A898C"        // Medium Gray
   };
