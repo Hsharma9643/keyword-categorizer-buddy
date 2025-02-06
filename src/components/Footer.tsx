@@ -20,7 +20,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Learn Section (previously Quick Links) */}
+          {/* Learn Section */}
           <div>
             <h3 className="font-semibold mb-4 text-lg">Learn</h3>
             <ul className="space-y-2">
@@ -42,26 +42,10 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="https://www.adschoolmaster.com/seo-course/" 
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
-                >
-                  SEO Marketing Course 1.0
-                </a>
-              </li>
-              <li>
-                <a 
                   href="https://www.adschoolmaster.com/newsletter/" 
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Newsletter
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="https://www.adschoolmaster.com/a-z-seo-glossary/" 
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
-                >
-                  SEO Glossary
                 </a>
               </li>
               <li>
@@ -79,6 +63,30 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4 text-lg">Resources</h3>
             <ul className="space-y-2">
+              <li>
+                <a 
+                  href="https://seo-keyword-classifier-tool.netlify.app/" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  SEO Tool
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://www.adschoolmaster.com/seo-course/" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  SEO Marketing Course 1.0
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://www.adschoolmaster.com/a-z-seo-glossary/" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  SEO Glossary
+                </a>
+              </li>
               <li>
                 <a 
                   href="https://www.adschoolmaster.com/contact/" 
