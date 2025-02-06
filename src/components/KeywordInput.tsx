@@ -20,13 +20,22 @@ export const KeywordInput = ({ onAnalyze }: KeywordInputProps) => {
   return (
     <div className="space-y-4">
       <Textarea
-        placeholder="Enter your keywords (one per line)"
-        className="min-h-[200px] font-mono"
+        placeholder="Enter your queries or keywords (one per line)
+Example:
+Is artificial intelligence dangerous?
+What happens during photosynthesis?
+How to make a chocolate cake?
+iPhone vs Android
+What is quantum computing?
+Why do leaves change color?
+When was the internet invented?
+Tell me a joke"
+        className="min-h-[200px] font-mono text-sm"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
       <Button onClick={handleAnalyze} className="w-full">
-        Analyze Keywords
+        Analyze Queries
       </Button>
     </div>
   );

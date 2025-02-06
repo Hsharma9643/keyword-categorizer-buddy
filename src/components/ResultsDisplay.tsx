@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 
 export type QueryIntent = 
   | "boolean" | "consequence" | "instruction" | "comparison"
@@ -41,14 +41,14 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   }));
 
   const COLORS = {
-    boolean: "#3b82f6",
-    consequence: "#10b981",
-    instruction: "#8b5cf6",
-    comparison: "#f59e0b",
-    definition: "#ef4444",
-    reason: "#6366f1",
-    shortFact: "#14b8a6",
-    other: "#64748b"
+    boolean: "#22c55e",     // Green
+    consequence: "#15803d", // Dark Green
+    instruction: "#86efac", // Light Green
+    comparison: "#4ade80",  // Medium Green
+    definition: "#16a34a",  // Forest Green
+    reason: "#166534",      // Deep Green
+    shortFact: "#bbf7d0",   // Pale Green
+    other: "#dcfce7"        // Mint Green
   };
 
   return (
@@ -62,7 +62,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                outerRadius={80}
+                outerRadius={100}
                 fill="#8884d8"
                 dataKey="value"
               >
@@ -73,6 +73,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   />
                 ))}
               </Pie>
+              <Tooltip />
               <Legend />
             </PieChart>
           </ResponsiveContainer>
@@ -82,7 +83,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
       <Card className="p-6">
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-semibold">Classified Keywords</h3>
+            <h3 className="text-lg font-semibold">Classified Queries</h3>
             <Button onClick={copyResults} variant="outline" size="sm">
               Copy Results
             </Button>
@@ -91,15 +92,13 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
             {results.map((result, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-2 bg-accent rounded-md"
+                className="flex items-center justify-between p-3 bg-muted rounded-lg"
               >
                 <span className="font-medium">{result.keyword}</span>
                 <span
                   className="px-3 py-1 rounded-full text-sm font-medium"
                   style={{
-                    backgroundColor: COLORS[result.intent],
-                    color: '#000000',
-                    textShadow: 'none'
+                    color: COLORS[result.intent],
                   }}
                 >
                   {result.intent.charAt(0).toUpperCase() + result.intent.slice(1)}

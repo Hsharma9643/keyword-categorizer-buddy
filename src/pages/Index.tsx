@@ -2,30 +2,27 @@ import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult, QueryIntent } from "@/components/ResultsDisplay";
 
-// Pattern matching rules for classification
+// Pattern matching rules for classification with improved regex patterns
 const patterns = {
-  boolean: /^(is|are|can|does|do|will|should|has|have)/i,
-  consequence: /(what happens|effect|impact|result|outcome|consequence)/i,
-  instruction: /^(how to|steps to|guide|instructions for|way to|method of)/i,
-  comparison: /(vs|versus|compared to|difference between|better|which is better|compare)/i,
-  definition: /^(what is|define|meaning|definition|explain|describe)/i,
-  reason: /^(why|reason|cause|explain why)/i,
-  shortFact: /^(where|who|which|what(?! (to|is))|how many|how much)/i,
+  boolean: /^(is|are|can|does|do|will|should|has|have)\b/i,
+  consequence: /\b(what happens|effect|impact|result|outcome|consequence)\b/i,
+  instruction: /^(how to|steps to|guide|instructions|way to|method|build|create|make)\b/i,
+  comparison: /\b(vs|versus|compared to|difference between|better|which is better|compare|similarities)\b/i,
+  definition: /^(what is|define|meaning|definition|explain|describe)\b/i,
+  reason: /^(why|reason|cause|explain why)\b/i,
+  shortFact: /^(where|who|when|which|what(?! (happens|is))|how many|how much)\b/i,
   other: /.*/
 };
 
 const classifyKeyword = (keyword: string): QueryIntent => {
-  // Convert to lowercase for consistent matching
   const processedKeyword = keyword.toLowerCase().trim();
   
-  // Check each pattern and return the first match
   for (const [intent, pattern] of Object.entries(patterns)) {
     if (pattern.test(processedKeyword)) {
       return intent as QueryIntent;
     }
   }
   
-  // Default to "other" if no patterns match
   return "other";
 };
 
@@ -45,9 +42,9 @@ const Index = () => {
       <div className="container max-w-4xl">
         <div className="space-y-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Keyword Intent Classifier</h1>
-            <p className="text-muted-foreground">
-              Enter your keywords below to analyze their search intent using pattern matching
+            <h1 className="text-4xl font-bold mb-4">Query Intent Classifier</h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Enter your search queries or keywords (one per line) to analyze their intent based on linguistic patterns.
             </p>
           </div>
 
