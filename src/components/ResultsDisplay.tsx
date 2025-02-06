@@ -51,7 +51,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     consequence: "#ea384c", // Cardinal Red alternative
     instruction: "#ADD8E6", // Ice Blue
     comparison: "#40E0D0",  // Caribbean Green
-    definition: "#555555",  // Dark Gray
+    definition: "#3E2723",  // Dark Brown
     reason: "#2226",       // Dark Gray
     shortFact: "transparent", // Transparent background
     other: "#8A898C"        // Medium Gray
