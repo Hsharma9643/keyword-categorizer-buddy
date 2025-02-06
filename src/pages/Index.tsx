@@ -157,23 +157,23 @@ const Index = () => {
             <button
               onClick={() => handleShare('twitter')}
               className="p-2 rounded-full hover:bg-muted transition-colors"
-              aria-label="Share on Twitter"
+              aria-label="Share on X (formerly Twitter)"
             >
-              <Twitter className="w-6 h-6 text-[#1DA1F2]" />
+              <Twitter className="w-6 h-6 text-foreground" />
             </button>
             <button
               onClick={() => handleShare('facebook')}
               className="p-2 rounded-full hover:bg-muted transition-colors"
               aria-label="Share on Facebook"
             >
-              <Facebook className="w-6 h-6 text-[#1877F2]" />
+              <Facebook className="w-6 h-6 text-foreground" />
             </button>
             <button
               onClick={() => handleShare('linkedin')}
               className="p-2 rounded-full hover:bg-muted transition-colors"
               aria-label="Share on LinkedIn"
             >
-              <Linkedin className="w-6 h-6 text-[#0A66C2]" />
+              <Linkedin className="w-6 h-6 text-foreground" />
             </button>
           </div>
         </div>
