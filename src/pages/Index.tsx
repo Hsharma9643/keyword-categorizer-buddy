@@ -14,6 +14,19 @@ const patterns = {
   opinion: /(best|better|worst|should i|recommend|review)/i,
   prediction: /(will|future|predict|forecast|upcoming|next)/i,
   personal: /(my|for me|personal|individual|your|yourself|mine|our|we|us)/i,
+  comparison: /(vs|versus|compared to|difference between|better|which is better|compare)/i,
+  location: /(near|nearby|distance|location|directions|where is|closest)/i,
+  temporal: /(when|how long|schedule|duration|time|hours|minutes|days)/i,
+  hypothetical: /(what if|if|suppose|hypothetically|assuming|imagine)/i,
+  opinionVsFact: /(is it true|actually|really|fact|prove|evidence|opinion|think|feel about)/i,
+  procedural: /(process|steps|procedure|sequence|how to|method|way to)/i,
+  confirmation: /(is it true|confirm|verify|did|actually|really)/i,
+  creative: /(ideas|creative|inspiration|brainstorm|imagine|design)/i,
+  technical: /(fix|specifications|technical|troubleshoot|error|bug|issue)/i,
+  emotional: /(how to deal with|advice|support|help with|cope|feeling|anxiety|stress)/i,
+  entertainment: /(funny|movies|games|entertainment|fun|play|watch)/i,
+  historical: /(history|historical|past|when was|ancient|origin)/i,
+  scientific: /(theory|scientific|how does|explain|experiment|science)/i,
 };
 
 const classifyKeyword = (keyword: string): QueryIntent => {
