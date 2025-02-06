@@ -39,6 +39,8 @@ const Index = () => {
           </div>
 
           <KeywordInput onAnalyze={handleAnalyze} />
+          
+          {results.length > 0 && <ResultsDisplay results={results} />}
 
           <div className="bg-muted rounded-lg p-6">
             <h2 className="text-xl font-semibold mb-3">About the Tool</h2>
@@ -132,8 +134,6 @@ const Index = () => {
               Whether you're creating content, running ads, or optimizing for search, this tool helps you align your strategy with real user intent for better results.
             </p>
           </div>
-
-          {results.length > 0 && <ResultsDisplay results={results} />}
 
           <div className="text-center text-sm text-muted-foreground">
             <p>Disclaimer: This tool and the content on this page were created using DeepSeek, ChatGPT, and Lovable.dev.</p>
