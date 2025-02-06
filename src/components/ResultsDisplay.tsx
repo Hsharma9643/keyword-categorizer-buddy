@@ -49,7 +49,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   const COLORS = {
     boolean: "#1A1F2C",     // Dark Purple
     consequence: "#ea384c", // Cardinal Red alternative
-    instruction: "#222222", // Dark Gray
+    instruction: "#ADD8E6", // Ice Blue
     comparison: "#333333",  // Dark Gray
     definition: "#555555",  // Dark Gray
     reason: "#2226",       // Dark Gray
