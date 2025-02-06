@@ -4,7 +4,7 @@ import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
 import { classifyQuery } from "@/utils/queryClassifier";
 import { useToast } from "@/components/ui/use-toast";
 import Footer from "@/components/Footer";
-import { Facebook, Linkedin, Twitter } from "lucide-react";
+import { X, Facebook, Linkedin } from "lucide-react";
 
 const Index = () => {
   const [results, setResults] = useState<KeywordResult[]>([]);
@@ -159,7 +159,7 @@ const Index = () => {
               className="p-2 rounded-full hover:bg-muted transition-colors"
               aria-label="Share on X (formerly Twitter)"
             >
-              <Twitter className="w-6 h-6 text-foreground" />
+              <X className="w-6 h-6 text-foreground" />
             </button>
             <button
               onClick={() => handleShare('facebook')}
