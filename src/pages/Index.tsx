@@ -8,6 +8,8 @@ const patterns = {
   boolean: /^(is|are|can|does|do|will|should|has|have)/i,
   consequence: /(what happens|effect|impact|result|outcome|consequence)/i,
   instruction: /(how to|steps|guide|tutorial|process|way to|improve|enhance|boost|increase|optimize|master|learn|tips|advice)/i,
+  // Move scientific before definition to take precedence
+  scientific: /(theory|scientific|physics|chemistry|biology|hypothesis|experiment|quantum|molecule|atom|cell|evolution|science|laboratory)/i,
   definition: /(what is|define|meaning|definition|explain|describe)/i,
   reason: /(why|reason|cause|explain why)/i,
   shortFact: /(when|where|who|which|what(?! is)|how many|how much)/i,
@@ -26,7 +28,6 @@ const patterns = {
   emotional: /(how to deal with|advice|support|help with|cope|feeling|anxiety|stress)/i,
   entertainment: /(funny|movies|games|entertainment|fun|play|watch)/i,
   historical: /(history|historical|past|when was|ancient|origin)/i,
-  scientific: /(theory|scientific|how does|explain|experiment|science)/i,
 };
 
 const classifyKeyword = (keyword: string): QueryIntent => {
