@@ -50,7 +50,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     boolean: "#1A1F2C",     // Dark Purple
     consequence: "#ea384c", // Cardinal Red alternative
     instruction: "#ADD8E6", // Ice Blue
-    comparison: "#333333",  // Dark Gray
+    comparison: "#40E0D0",  // Caribbean Green
     definition: "#555555",  // Dark Gray
     reason: "#2226",       // Dark Gray
     shortFact: "transparent", // Transparent background
