@@ -27,7 +27,7 @@ const patterns = {
   creative: /(ideas|creative|inspiration|brainstorm|imagine|design)/i,
   technical: /(fix|specifications|technical|troubleshoot|error|bug|issue)/i,
   emotional: /(how to deal with|advice|support|help with|cope|feeling|anxiety|stress)/i,
-  entertainment: /(funny|movies|games|entertainment|fun|play|watch)/i,
+  entertainment: /(funny|fun|movies?|game|games|play|watch|stream|shows?|series|video|videos|entertainment|leisure|hobby|hobbies|activities|netflix|gaming|chess|sports?|music|dance|puzzle|puzzles|recreation|amusement|pastime)/i,
 };
 
 const classifyKeyword = (keyword: string): QueryIntent => {
