@@ -114,10 +114,26 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Company Section (previously Contact) */}
           <div>
-            <h3 className="font-semibold mb-4 text-lg">Contact</h3>
+            <h3 className="font-semibold mb-4 text-lg">Company</h3>
             <ul className="space-y-2">
+              <li>
+                <a 
+                  href="https://www.adschoolmaster.com/seo-consulting/" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  SEO Consulting
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://www.adschoolmaster.com/contact/" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  Contact
+                </a>
+              </li>
               <li className="text-sm text-gray-300">
                 Email: hello@adschoolmaster.com
               </li>
