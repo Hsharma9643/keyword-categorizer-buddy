@@ -102,9 +102,10 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
               >
                 <span className="font-medium">{result.keyword}</span>
                 <span
-                  className="px-3 py-1 rounded-full text-sm font-medium text-white"
+                  className="px-3 py-1 rounded-full text-sm font-medium"
                   style={{
-                    backgroundColor: COLORS[result.intent]
+                    backgroundColor: COLORS[result.intent],
+                    color: result.intent === 'shortFact' ? 'black' : 'white'
                   }}
                 >
                   {result.intent.charAt(0).toUpperCase() + result.intent.slice(1)}
