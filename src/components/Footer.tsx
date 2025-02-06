@@ -18,7 +18,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/ca156a4f-b814-40ad-be47-5de7bacb20a4.png"
                 alt="Adschoolmaster Logo"
-                className="h-16 w-auto"
+                className="h-20 w-auto"
               />
             </a>
             <p className="text-sm text-gray-300">

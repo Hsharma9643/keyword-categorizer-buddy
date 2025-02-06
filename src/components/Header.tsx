@@ -17,7 +17,7 @@ const Header = () => {
             <img
               src="/lovable-uploads/7075dea4-9bc4-44e1-96cb-fc7658d573c8.png"
               alt="Adschoolmaster Logo"
-              className="h-16 w-auto"
+              className="h-20 w-auto"
             />
           </a>
           
