@@ -15,21 +15,46 @@ const Header = () => {
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/about" className="text-gray-700 hover:text-orange-500 transition-colors">
+            <a 
+              href="https://www.adschoolmaster.com/about/"
+              target="_blank"
+              rel="noopener noreferrer" 
+              className="text-gray-700 hover:text-orange-500 transition-colors"
+            >
               About
-            </Link>
-            <Link to="/blog" className="text-gray-700 hover:text-orange-500 transition-colors">
+            </a>
+            <a 
+              href="https://www.adschoolmaster.com/blog/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-orange-500 transition-colors"
+            >
               Blog
-            </Link>
-            <Link to="/newsletter" className="text-gray-700 hover:text-orange-500 transition-colors">
+            </a>
+            <a 
+              href="https://www.adschoolmaster.com/newsletter/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-orange-500 transition-colors"
+            >
               Newsletter
-            </Link>
-            <Link to="/learn-seo" className="text-gray-700 hover:text-orange-500 transition-colors">
+            </a>
+            <a 
+              href="https://www.adschoolmaster.com/seo-course/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-orange-500 transition-colors"
+            >
               Learn SEO
-            </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-orange-500 transition-colors">
+            </a>
+            <a 
+              href="https://www.adschoolmaster.com/contact/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-orange-500 transition-colors"
+            >
               Contact
-            </Link>
+            </a>
           </div>
         </nav>
       </div>
@@ -38,3 +63,4 @@ const Header = () => {
 };
 
 export default Header;
+
