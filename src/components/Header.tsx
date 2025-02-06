@@ -13,7 +13,7 @@ const Header = () => {
             <img
               src="/lovable-uploads/7075dea4-9bc4-44e1-96cb-fc7658d573c8.png"
               alt="Adschoolmaster Logo"
-              className="h-12 w-auto"
+              className="h-16 w-auto" // Increased from h-12 to h-16
             />
           </a>
           
@@ -56,4 +56,3 @@ const Header = () => {
 };
 
 export default Header;
-
