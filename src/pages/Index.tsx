@@ -25,7 +25,7 @@ const patterns = {
   personal: /(my|for me|personal|individual|your|yourself|mine|our|we|us)/i,
   comparison: /(vs|versus|compared to|difference between|better|which is better|compare)/i,
   location: /(near|nearby|distance|location|directions|where is|closest)/i,
-  temporal: /(when(?! was)|how long|schedule|duration|time|hours|minutes|days)/i,
+  temporal: /(when(?! was)|how long|duration|time|schedule|timetable|hours?|minutes?|days?|weeks?|months?|years?|date|calendar|upcoming|deadline|timing|period|interval|frequency|often)/i,
   entertainment: /(fun|game|play|movie|show|music|song|book|novel|story|fiction|entertainment|hobby|leisure|recreation|sport|activity)/i,
   cultural: /(culture|tradition|custom|ritual|belief|religion|society|community|language|art|music|dance|food|cuisine|festival|celebration|holiday|ceremony|practice)/i,
   other: /.*/
