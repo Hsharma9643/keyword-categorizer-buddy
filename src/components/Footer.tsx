@@ -173,9 +173,11 @@ const Footer = () => {
 
         {/* Copyright */}
         <Separator className="my-8 bg-gray-700" />
-        <div className="flex justify-between items-center text-sm text-gray-300">
-          <p>© 2017-2025 - ADSCHOOLMASTER is a Subsidiary of BirdMatrix LLP (ID No. AAY-2584)</p>
-          <div className="space-x-4">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center text-sm text-gray-300 space-y-4 md:space-y-0">
+          <p className="text-center md:text-left">
+            © 2017-2025 - ADSCHOOLMASTER is a Subsidiary of BirdMatrix LLP (ID No. AAY-2584)
+          </p>
+          <div className="flex justify-center md:justify-end space-x-4">
             <a 
               href="https://www.adschoolmaster.com/privacy-policy/" 
               className="hover:text-white transition-colors"
@@ -196,4 +198,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
