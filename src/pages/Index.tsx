@@ -4,30 +4,13 @@ import { ResultsDisplay, KeywordResult, QueryIntent } from "@/components/Results
 
 // Pattern matching rules for classification
 const patterns = {
-  opinionVsFact: /^(is|are|was|were|do|does|can|could|should|would|will|has|have|had).*(true|false|real|fake|right|wrong|correct|incorrect|valid|invalid|proven|disproven|fact|opinion|evidence|scientific|consensus|studies show|research|according to|verified|debunked|controversial|debate|disputed|contested|objective|subjective|agree|disagree|think|believe|feel|prefer|like|enjoy|better|worse|good|bad|best|worst)/i,
-  hypothetical: /(what if|if (?!.*true|false)|suppose|hypothetically|assuming|imagine|would.*if|could.*if|will.*if|might.*if)/i,
-  exploratory: /(tell me about|explain|what are|describe) .*/i,
-  creative: /(ideas?|creative|inspiration|brainstorm|imagine|design|innovative|unique ways|suggest|come up with|story ideas?|writing prompts?|artistic|inventive)/i,
-  confirmation: /^(confirm|verify|did|actually|really|can you confirm|has.*been|have.*been|was.*done|were.*done|can (you )?confirm)/i,
-  procedural: /^(how to|steps? to|process of|procedure for|guide to|method of|way to|instructions? for|steps? for|sequence of|walkthrough|tutorial on)/i,
-  technical: /(?<!can you )(fix|specifications?|technical|troubleshoot|error|bug|issue|protocol|software|hardware|driver|system|network|server|database|code|programming|computer|laptop|device|mobile|desktop|app(lication)?|website|browser|interface|configuration|setup|install(ation)?|upgrade|update|patch|version|compatibility|performance|bandwidth|memory|storage|cpu|processor|gpu|graphics|resolution|screen|display|audio|sound|video|wireless|wifi|bluetooth|usb|port|cable|connection|sync|backup|restore|recovery|crash|freeze|hang|slow|fast|speed|boot|startup|shutdown|login|logout|password|security|firewall|antivirus|malware|virus|spam|hack|encryption|decryption|authentication|authorization|permission|access|user|admin|root|command|terminal|console|log|debug|trace|monitor|analyze|diagnose|test|benchmark|optimize|tune|configure|settings?|preferences?|options?|menu|toolbar|taskbar|desktop|folder|file|directory|path|url|link|address|domain|hosting|server|client|api|framework|library|module|package|dependency|component|function|method|class|object|variable|data|input|output|parameter|argument|return|value|type|format|syntax|language|compiler|interpreter|runtime|environment|platform|operating system|os|windows|mac|linux|unix|android|ios|mobile|web|cloud|local|remote|online|offline|download|upload|stream|buffer|cache|temporary|permanent|volatile|static|dynamic|synchronous|asynchronous|parallel|sequential|concurrent|thread|process|service|daemon|background|foreground|frontend|backend|full[ -]?stack|database|sql|nosql|index|query|crud|rest|soap|xml|json|html|css|javascript|typescript|python|java|cpp?|ruby|php|perl|shell|bash|powershell|cmd|git|svn|mercurial|docker|kubernetes|aws|azure|gcp|cloud|saas|paas|iaas|virtualization|container|image|instance|cluster|node|pod|deployment|service|ingress|egress|load[ -]?balancer|proxy|gateway|router|switch|hub|modem|isp|dns|dhcp|ip|tcp|udp|http[s]?|ftp|ssh|telnet|vpn|ssl|tls|encryption|hash|token|session|cookie|cache|api[ -]?key|oauth|jwt|cors|xss|csrf|sql[ -]wall|security|vulnerability|patch|hotfix|workaround|solution|resolution|fix|repair|maintain|support|help desk|ticket|incident|problem|known issue|bug|defect|feature|enhancement|requirement|specification|documentation|manual|guide|tutorial|walkthrough|step[s]?|instruction[s]?|direction[s]?|procedure[s]?|process|flow|diagram|architecture|design|pattern|best practice|standard|convention|guideline|policy|rule|regulation|compliance|audit|review|assessment|evaluation|analysis|report|metric|measurement|monitoring|alerting|notification|warning|error|exception|failure|success|status|health|check|validation|verification|testing|qa|quality|assurance|control|management|governance|strategy|planning|roadmap|milestone|deadline|schedule|timeline|project|program|portfolio|resource|budget|cost|price|license|subscription|contract|agreement|terms|conditions|policy|legal|compliance|regulation|standard|certification|accreditation|audit|review|assessment|evaluation|analysis|report)/i,
-  emotional: /(how to (deal|cope) with|what to (say|do) .*(grief|grieving|sad|anxious|depressed|lonely)|feeling (sad|anxious|depressed|lonely|overwhelmed)|mental health|emotional|therapy|counseling|grief|anxiety|depression|stress|trauma|support group|self-care|meditation|mindfulness|healing|relationship advice|heartbreak|breakup|emotions|worried|upset|panic|fear)/i,
-  historical: /(history|historical|past|when was|ancient|origin|caused.*war|world war|empire|civilization|century|decade|era|dynasty|period|timeline|heritage)/i,
-  boolean: /^(is|are|can|does|do|will|should|has|have)(?!.*(true|confirm|verify|actually|really))/i,
+  boolean: /^(is|are|can|does|do|will|should|has|have)/i,
   consequence: /(what happens|effect|impact|result|outcome|consequence)/i,
-  instruction: /(how to(?! (deal|cope) with)|improve|enhance|boost|increase|optimize|master|learn|tips|advice|benefits|advantages)/i,
-  scientific: /(theory|scientific|physics|chemistry|biology|hypothesis|experiment|quantum|molecule|atom|cell|evolution|science|laboratory)(?!.*(story|fiction|creative|ideas?|inspiration))/i,
-  definition: /(what is|define|meaning|definition|explain|describe)/i,
-  reason: /(why|reason|cause|explain why)/i,
-  shortFact: /(where|who|which|what(?! (to|is))|how many|how much)/i,
-  opinion: /(best|better|worst|should i|recommend|review)/i,
-  prediction: /(will|future|predict|forecast|upcoming|next)/i,
-  personal: /(my|for me|personal|individual|your|yourself|mine|our|we|us)/i,
+  instruction: /^(how to|steps to|guide|instructions for|way to|method of)/i,
   comparison: /(vs|versus|compared to|difference between|better|which is better|compare)/i,
-  location: /(near|nearby|distance|location|directions|where is|closest)/i,
-  temporal: /(when(?! was)|how long|duration|time|schedule|timetable|hours?|minutes?|days?|weeks?|months?|years?|date|calendar|upcoming|deadline|timing|period|interval|frequency|often)/i,
-  entertainment: /(fun|game|play|movie|show|music|song|book|novel|story|fiction|entertainment|hobby|leisure|recreation|sport|activity)/i,
-  cultural: /(culture|tradition|custom|ritual|belief|religion|society|community|language|art|music|dance|food|cuisine|festival|celebration|holiday|ceremony|practice)/i,
+  definition: /^(what is|define|meaning|definition|explain|describe)/i,
+  reason: /^(why|reason|cause|explain why)/i,
+  shortFact: /^(where|who|which|what(?! (to|is))|how many|how much)/i,
   other: /.*/
 };
 

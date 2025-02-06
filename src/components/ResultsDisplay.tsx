@@ -5,11 +5,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
 export type QueryIntent = 
   | "boolean" | "consequence" | "instruction" | "comparison"
-  | "definition" | "reason" | "shortFact" | "opinion"
-  | "prediction" | "locationBased" | "temporal" | "hypothetical"
-  | "procedural" | "exploratory" | "confirmation" | "creative"
-  | "technical" | "emotional" | "entertainment" | "historical"
-  | "scientific" | "personal" | "cultural" | "other";
+  | "definition" | "reason" | "shortFact" | "other";
 
 export interface KeywordResult {
   keyword: string;
@@ -52,22 +48,6 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     definition: "#ef4444",
     reason: "#6366f1",
     shortFact: "#14b8a6",
-    opinion: "#ec4899",
-    prediction: "#84cc16",
-    locationBased: "#06b6d4",
-    temporal: "#8b5cf6",
-    hypothetical: "#f97316",
-    procedural: "#0ea5e9",
-    exploratory: "#d946ef",
-    confirmation: "#22c55e",
-    creative: "#eab308",
-    technical: "#3b82f6",
-    emotional: "#ec4899",
-    entertainment: "#f59e0b",
-    historical: "#6366f1",
-    scientific: "#14b8a6",
-    personal: "#d946ef",
-    cultural: "#0ea5e9",
     other: "#64748b"
   };
 
