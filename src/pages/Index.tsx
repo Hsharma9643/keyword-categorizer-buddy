@@ -96,6 +96,43 @@ const Index = () => {
             </div>
           </div>
 
+          <div className="bg-muted rounded-lg p-6">
+            <h2 className="text-xl font-semibold mb-4">Use Cases & Benefits</h2>
+            <p className="text-muted-foreground mb-6">
+              The SEO Keyword Intent Classifier is a powerful tool for anyone looking to better understand search queries and optimize content accordingly. Here's how it can be used effectively:
+            </p>
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-semibold mb-2">🔹 Content Marketers & Bloggers</h3>
+                <p className="text-muted-foreground">✔️ Identify the right content format based on search intent (e.g., tutorials for instructional queries, comparisons for "vs" searches).</p>
+                <p className="text-muted-foreground">✔️ Optimize blog posts to match what users are actually looking for.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">🔹 SEO Professionals</h3>
+                <p className="text-muted-foreground">✔️ Map keywords to the correct funnel stage (awareness, consideration, decision).</p>
+                <p className="text-muted-foreground">✔️ Improve on-page SEO by aligning content with searcher expectations.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">🔹 PPC & Paid Search Advertisers</h3>
+                <p className="text-muted-foreground">✔️ Target the right audience with more relevant ads.</p>
+                <p className="text-muted-foreground">✔️ Avoid bidding on low-converting informational queries.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">🔹 E-commerce Businesses</h3>
+                <p className="text-muted-foreground">✔️ Understand transactional vs. informational intent to optimize product and category pages.</p>
+                <p className="text-muted-foreground">✔️ Improve internal linking by connecting users to relevant content.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">🔹 AI & Chatbot Developers</h3>
+                <p className="text-muted-foreground">✔️ Train chatbots and virtual assistants to recognize and respond appropriately to different types of queries.</p>
+                <p className="text-muted-foreground">✔️ Enhance user experience by providing more accurate and helpful answers.</p>
+              </div>
+            </div>
+            <p className="text-muted-foreground mt-6">
+              Whether you're creating content, running ads, or optimizing for search, this tool helps you align your strategy with real user intent for better results.
+            </p>
+          </div>
+
           {results.length > 0 && <ResultsDisplay results={results} />}
         </div>
       </div>
