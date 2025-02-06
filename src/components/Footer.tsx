@@ -10,11 +10,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <img 
-              src="/lovable-uploads/ca156a4f-b814-40ad-be47-5de7bacb20a4.png"
-              alt="Adschoolmaster Logo"
-              className="h-16 w-auto"
-            />
+            <a 
+              href="https://www.adschoolmaster.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img 
+                src="/lovable-uploads/ca156a4f-b814-40ad-be47-5de7bacb20a4.png"
+                alt="Adschoolmaster Logo"
+                className="h-16 w-auto"
+              />
+            </a>
             <p className="text-sm text-gray-300">
               SEO focused, Simplified Digital Marketing Training and Consulting
             </p>
