@@ -4,6 +4,7 @@ import { ResultsDisplay, KeywordResult, QueryIntent } from "@/components/Results
 
 // Pattern matching rules for classification
 const patterns = {
+  opinionVsFact: /(is it true|actually|really|fact|prove|evidence|opinion|think|feel about|do you (like|prefer|enjoy|believe)|what do you think|your thoughts on|your opinion|your view|your stance|your take|your perspective|agree or disagree|right or wrong|true or false|fact or fiction|proven|disproven|scientific consensus|studies show|research indicates|according to|verified|debunked|controversial|debate|disputed|contested|objective|subjective|personal preference|matter of opinion|matter of taste|matter of perspective)/i,
   exploratory: /(tell me about|explain|what are|describe) .*/i,
   creative: /(ideas?|creative|inspiration|brainstorm|imagine|design|innovative|unique ways|suggest|come up with|story ideas?|writing prompts?|artistic|inventive)/i,
   confirmation: /^(is it true|confirm|verify|did|actually|really|can you confirm|has.*been|have.*been|was.*done|were.*done|can (you )?confirm)/i,
@@ -25,7 +26,6 @@ const patterns = {
   location: /(near|nearby|distance|location|directions|where is|closest)/i,
   temporal: /(when(?! was)|how long|schedule|duration|time|hours|minutes|days)/i,
   hypothetical: /(what if|if|suppose|hypothetically|assuming|imagine)/i,
-  opinionVsFact: /(is it true|actually|really|fact|prove|evidence|opinion|think|feel about)/i,
   entertainment: /(fun|game|play|movie|show|music|song|book|novel|story|fiction|entertainment|hobby|leisure|recreation|sport|activity)/i,
   cultural: /(culture|tradition|custom|ritual|belief|religion|society|community|language|art|music|dance|food|cuisine|festival|celebration|holiday|ceremony|practice)/i,
   other: /.*/
