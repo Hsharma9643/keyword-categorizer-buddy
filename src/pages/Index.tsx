@@ -150,7 +150,7 @@ const Index = () => {
           </div>
 
           <div className="text-center text-sm text-muted-foreground">
-            <p>This page's content was created using DeepSeek.</p>
+            <p>Disclaimer: This page's content was created using DeepSeek.</p>
           </div>
 
           <div className="flex justify-center space-x-4 pb-8">
