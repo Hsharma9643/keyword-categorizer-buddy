@@ -20,24 +20,32 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Learn Section (previously Quick Links) */}
           <div>
-            <h3 className="font-semibold mb-4 text-lg">Quick Links</h3>
+            <h3 className="font-semibold mb-4 text-lg">Learn</h3>
             <ul className="space-y-2">
-              <li>
-                <a 
-                  href="https://www.adschoolmaster.com/about/" 
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
-                >
-                  About Us
-                </a>
-              </li>
               <li>
                 <a 
                   href="https://www.adschoolmaster.com/blog/" 
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Blog
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://www.adschoolmaster.com/seo-quiz/" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  SEO Quiz
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://www.adschoolmaster.com/seo-course/" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  SEO Marketing Course 1.0
                 </a>
               </li>
               <li>
@@ -50,10 +58,18 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="https://www.adschoolmaster.com/seo-course/" 
+                  href="https://www.adschoolmaster.com/a-z-seo-glossary/" 
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
-                  Learn SEO
+                  SEO Glossary
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://www.adschoolmaster.com/digital-marketing-course-gurgaon/" 
+                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                >
+                  Digital Marketing Course
                 </a>
               </li>
             </ul>
