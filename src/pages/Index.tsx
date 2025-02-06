@@ -38,14 +38,14 @@ const Index = () => {
             </p>
           </div>
 
+          <KeywordInput onAnalyze={handleAnalyze} />
+
           <div className="bg-muted rounded-lg p-6">
             <h2 className="text-xl font-semibold mb-3">About the Tool</h2>
             <p className="text-muted-foreground">
               My Free SEO Keyword Intent Classifier helps you instantly analyze search intent—whether it's informational, navigational, transactional, or commercial—using pattern recognition. It categorizes user-provided keywords or phrases into one of eight predefined categories, giving you clearer insights into what searchers are looking for.
             </p>
           </div>
-
-          <KeywordInput onAnalyze={handleAnalyze} />
 
           {results.length > 0 && <ResultsDisplay results={results} />}
         </div>
