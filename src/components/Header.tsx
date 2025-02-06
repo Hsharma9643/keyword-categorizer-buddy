@@ -6,13 +6,18 @@ const Header = () => {
     <header className="border-b">
       <div className="container max-w-7xl mx-auto px-4 py-4">
         <nav className="flex items-center justify-between">
-          <Link to="/" className="flex items-center">
+          <a
+            href="https://www.adschoolmaster.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center"
+          >
             <img
               src="/lovable-uploads/7075dea4-9bc4-44e1-96cb-fc7658d573c8.png"
               alt="Adschoolmaster Logo"
               className="h-12 w-auto"
             />
-          </Link>
+          </a>
           
           <div className="hidden md:flex items-center space-x-8">
             <a 
