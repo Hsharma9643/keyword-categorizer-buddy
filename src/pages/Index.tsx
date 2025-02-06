@@ -26,7 +26,7 @@ const patterns = {
   confirmation: /(is it true|confirm|verify|did|actually|really)/i,
   creative: /(ideas|creative|inspiration|brainstorm|imagine|design)/i,
   technical: /(fix|specifications|technical|troubleshoot|error|bug|issue)/i,
-  emotional: /(how to deal with|advice|support|help with|cope|feeling|anxiety|stress)/i,
+  emotional: /(how to (deal|cope) with|feeling (sad|anxious|depressed|lonely|overwhelmed)|mental health|emotional|therapy|counseling|grief|anxiety|depression|stress|trauma|support group|self-care|meditation|mindfulness|healing|relationship advice|heartbreak|breakup|emotions|worried|upset|panic|fear)/i,
   entertainment: /(funny|fun|movies?|game|games|play|watch|stream|shows?|series|video|videos|entertainment|leisure|hobby|hobbies|activities|netflix|gaming|chess|sports?|music|dance|puzzle|puzzles|recreation|amusement|pastime)/i,
 };
 
