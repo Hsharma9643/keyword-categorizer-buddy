@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
-import { classifyQuery, QueryIntent } from "@/utils/queryClassifier";
+import { classifyQuery } from "@/utils/queryClassifier";
 import { useToast } from "@/components/ui/use-toast";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   const [results, setResults] = useState<KeywordResult[]>([]);
@@ -42,6 +43,7 @@ const Index = () => {
           {results.length > 0 && <ResultsDisplay results={results} />}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
