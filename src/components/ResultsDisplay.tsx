@@ -52,6 +52,26 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     other: "#dcfce7"        // Green-100
   };
 
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, name, value }: any) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text 
+        x={x} 
+        y={y} 
+        fill="white" 
+        textAnchor={x > cx ? 'start' : 'end'} 
+        dominantBaseline="central"
+        fontSize="12"
+      >
+        {value}
+      </text>
+    );
+  };
+
   return (
     <div className="space-y-6">
       <Card className="p-6">
@@ -63,10 +83,10 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                outerRadius={80}
+                outerRadius={100}
                 fill="#8884d8"
                 dataKey="value"
-                label={({ name, value }) => `${name}: ${value}`}
+                label={renderCustomizedLabel}
               >
                 {chartData.map((entry, index) => (
                   <Cell
@@ -75,9 +95,11 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   />
                 ))}
               </Pie>
-              <Legend 
+              <Legend
+                verticalAlign="bottom"
+                height={36}
                 formatter={(value) => (
-                  <span style={{ color: 'white' }}>{value}</span>
+                  <span style={{ color: 'white', fontSize: '14px' }}>{value}</span>
                 )}
               />
             </PieChart>
