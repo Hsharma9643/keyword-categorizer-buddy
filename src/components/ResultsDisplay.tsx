@@ -44,6 +44,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   const chartData = Object.entries(intentCounts).map(([name, value]) => ({
     name: name.charAt(0).toUpperCase() + name.slice(1),
     value,
+    originalName: name // Keep the original name for color mapping
   }));
 
   const COLORS = {
@@ -75,7 +76,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                 {chartData.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
-                    fill={COLORS[entry.name.toLowerCase() as keyof typeof COLORS]}
+                    fill={COLORS[entry.originalName as keyof typeof COLORS]}
                   />
                 ))}
               </Pie>
