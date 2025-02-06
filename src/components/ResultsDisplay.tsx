@@ -53,7 +53,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     comparison: "#4ade80",  // Medium Green
     definition: "#16a34a",  // Forest Green
     reason: "#166534",      // Deep Green
-    shortFact: "#bbf7d0",   // Pale Green
+    shortFact: "transparent", // Transparent background
     other: "#dcfce7"        // Mint Green
   };
 
