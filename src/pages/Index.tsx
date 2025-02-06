@@ -159,7 +159,7 @@ const Index = () => {
               className="p-2 rounded-full hover:bg-muted transition-colors"
               aria-label="Share on X (formerly Twitter)"
             >
-              <X strokeWidth={2} className="w-5 h-5 text-foreground" />
+              <X strokeWidth={1.5} className="w-5 h-5 text-foreground" />
             </button>
             <button
               onClick={() => handleShare('facebook')}
