@@ -40,7 +40,6 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     value,
   }));
 
-  // Updated color palette with green theme and distinct colors for each category
   const COLORS = {
     boolean: "#22c55e",     // Green-500
     consequence: "#86efac", // Green-300
@@ -62,7 +61,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
       <text 
         x={x} 
         y={y} 
-        fill="white" 
+        fill="#000000"
         textAnchor={x > cx ? 'start' : 'end'} 
         dominantBaseline="central"
         fontSize="12"
@@ -99,7 +98,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                 verticalAlign="bottom"
                 height={36}
                 formatter={(value) => (
-                  <span style={{ color: 'white', fontSize: '14px' }}>{value}</span>
+                  <span style={{ color: '#000000', fontSize: '14px' }}>{value}</span>
                 )}
               />
             </PieChart>
