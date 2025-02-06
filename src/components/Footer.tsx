@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <img 
-              src="/lovable-uploads/7075dea4-9bc4-44e1-96cb-fc7658d573c8.png"
+              src="/lovable-uploads/ca156a4f-b814-40ad-be47-5de7bacb20a4.png"
               alt="Adschoolmaster Logo"
               className="h-16 w-auto"
             />
