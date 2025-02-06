@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
-import { classifyQuery } from "@/utils/queryClassifier";
+import { classifyQuery, QueryIntent } from "@/utils/queryClassifier";
 import { useToast } from "@/components/ui/use-toast";
-import Header from "@/components/Header";
 
 const Index = () => {
   const [results, setResults] = useState<KeywordResult[]>([]);
@@ -28,9 +27,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <div className="container max-w-4xl py-8">
+    <div className="min-h-screen bg-background py-8">
+      <div className="container max-w-4xl">
         <div className="space-y-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Query Intent Classifier</h1>
