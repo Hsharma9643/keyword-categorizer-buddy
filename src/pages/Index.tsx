@@ -12,7 +12,7 @@ const patterns = {
   historical: /(history|historical|past|when was|ancient|origin|caused.*war|world war|empire|civilization|century|decade|era|dynasty|period|timeline|heritage)/i,
   boolean: /^(is|are|can|does|do|will|should|has|have)(?!.*(true|confirm|verify|actually|really))/i,
   consequence: /(what happens|effect|impact|result|outcome|consequence)/i,
-  instruction: /(how to(?! (deal|cope) with)|steps|guide|tutorial|process|way to|improve|enhance|boost|increase|optimize|master|learn|tips|advice|benefits|advantages)/i,
+  instruction: /(how to(?! (deal|cope) with)|improve|enhance|boost|increase|optimize|master|learn|tips|advice|benefits|advantages)/i,
   scientific: /(theory|scientific|physics|chemistry|biology|hypothesis|experiment|quantum|molecule|atom|cell|evolution|science|laboratory)(?!.*(story|fiction|creative|ideas?|inspiration))/i,
   definition: /(what is|define|meaning|definition|explain|describe)/i,
   reason: /(why|reason|cause|explain why)/i,
@@ -25,7 +25,7 @@ const patterns = {
   temporal: /(when(?! was)|how long|schedule|duration|time|hours|minutes|days)/i,
   hypothetical: /(what if|if|suppose|hypothetically|assuming|imagine)/i,
   opinionVsFact: /(is it true|actually|really|fact|prove|evidence|opinion|think|feel about)/i,
-  procedural: /(process|steps|procedure|sequence|how to|method|way to)/i,
+  procedural: /^(how to|steps? to|process of|procedure for|guide to|method of|way to|instructions? for|steps? for|sequence of|walkthrough|tutorial on)/i,
   entertainment: /(fun|game|play|movie|show|music|song|book|novel|story|fiction|entertainment|hobby|leisure|recreation|sport|activity)/i,
   cultural: /(culture|tradition|custom|ritual|belief|religion|society|community|language|art|music|dance|food|cuisine|festival|celebration|holiday|ceremony|practice)/i,
   other: /.*/
