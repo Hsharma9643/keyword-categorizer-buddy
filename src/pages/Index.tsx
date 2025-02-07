@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
@@ -49,7 +50,7 @@ const Index = () => {
         <div className="container max-w-4xl">
           <div className="space-y-8">
             <div className="text-center">
-              <h1 className="text-4xl font-bold mb-4">Free SEO Intent Classifier Tool</h1>
+              <h1 className="text-4xl font-bold mb-4">Free SEO Keyword Intent Classifier Tool</h1>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Enter your search queries or keywords (one per line) to analyze their search intent using pattern recognition.
               </p>
