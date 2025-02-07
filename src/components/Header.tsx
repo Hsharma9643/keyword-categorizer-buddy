@@ -62,10 +62,10 @@ const Header = () => {
                   Learn SEO
                 </a>
                 <a 
-                  href="https://www.adschoolmaster.com/contact/"
+                  href="https://app.adschoolmaster.com/"
                   className="text-gray-700 hover:text-orange-500 transition-colors"
                 >
-                  Contact
+                  SEO Intent Tool
                 </a>
               </div>
             </div>
@@ -98,10 +98,10 @@ const Header = () => {
               Learn SEO
             </a>
             <a 
-              href="https://www.adschoolmaster.com/contact/"
+              href="https://app.adschoolmaster.com/"
               className="text-gray-700 hover:text-orange-500 transition-colors"
             >
-              Contact
+              SEO Intent Tool
             </a>
           </div>
         </nav>
@@ -111,3 +111,4 @@ const Header = () => {
 };
 
 export default Header;
+
