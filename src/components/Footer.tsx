@@ -72,10 +72,10 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a 
-                  href="https://seo-keyword-classifier-tool.netlify.app/" 
+                  href="https://app.adschoolmaster.com/" 
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
-                  SEO Tool
+                  SEO Intent Tool
                 </a>
               </li>
               <li>

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
@@ -31,8 +30,8 @@ const Index = () => {
   };
 
   const handleShare = (platform: string) => {
-    const url = window.location.href;
-    const text = "Check out this free SEO Keyword Intent Classifier Tool!";
+    const url = "https://app.adschoolmaster.com/";
+    const text = "Check out this free SEO Intent Classifier Tool!";
     
     const shareUrls = {
       twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
@@ -50,7 +49,7 @@ const Index = () => {
         <div className="container max-w-4xl">
           <div className="space-y-8">
             <div className="text-center">
-              <h1 className="text-4xl font-bold mb-4">Free SEO Keyword Intent Classifier Tool</h1>
+              <h1 className="text-4xl font-bold mb-4">Free SEO Intent Classifier Tool</h1>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Enter your search queries or keywords (one per line) to analyze their search intent using pattern recognition.
               </p>
@@ -63,7 +62,7 @@ const Index = () => {
             <div className="bg-muted rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-3">About the Tool</h2>
               <p className="text-muted-foreground">
-                My Free SEO Keyword Intent Classifier helps you instantly analyze search query intent—using pattern recognition. It categorizes user-provided keywords or phrases into one of eight predefined categories, giving you clearer insights into what searchers are looking for.
+                My Free SEO Intent Classifier helps you instantly analyze search query intent—using pattern recognition. It categorizes user-provided keywords or phrases into one of eight predefined categories, giving you clearer insights into what searchers are looking for.
               </p>
             </div>
 
@@ -185,7 +184,7 @@ const Index = () => {
       </div>
       
       <div className="text-center text-sm text-muted-foreground pb-4">
-        <p>This SEO Tool is created by <a href="https://www.linkedin.com/in/hemantsharmax/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Hemant Sharma</a> at Adschoolmaster</p>
+        <p>This SEO Intent Tool is created by <a href="https://www.linkedin.com/in/hemantsharmax/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Hemant Sharma</a> at Adschoolmaster</p>
       </div>
       
       <Footer />
