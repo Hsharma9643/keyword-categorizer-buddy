@@ -65,7 +65,7 @@ const Header = () => {
                   href="https://app.adschoolmaster.com/"
                   className="text-gray-700 hover:text-orange-500 transition-colors"
                 >
-                  SEO Intent Tool
+                  Keyword Intent Tool
                 </a>
               </div>
             </div>
@@ -101,7 +101,7 @@ const Header = () => {
               href="https://app.adschoolmaster.com/"
               className="text-gray-700 hover:text-orange-500 transition-colors"
             >
-              SEO Intent Tool
+              Keyword Intent Tool
             </a>
           </div>
         </nav>
@@ -111,4 +111,3 @@ const Header = () => {
 };
 
 export default Header;
-

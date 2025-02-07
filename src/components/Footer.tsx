@@ -75,7 +75,7 @@ const Footer = () => {
                   href="https://app.adschoolmaster.com/" 
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
-                  SEO Intent Tool
+                  Keyword Intent Tool
                 </a>
               </li>
               <li>
