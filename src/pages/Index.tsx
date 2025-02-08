@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
@@ -184,7 +185,7 @@ const Index = () => {
       </div>
       
       <div className="text-center text-sm text-muted-foreground pb-4">
-        <p>This SEO Keyword Intent Classifier Tool is created by <a href="https://www.linkedin.com/in/hemantsharmax/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Hemant Sharma</a> at Adschoolmaster</p>
+        <p>This SEO Keyword Intent Classifier Tool is created by <a href="https://www.linkedin.com/in/hemantsharmax/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Hemant Sharma</a> at Adschoolmaster.</p>
       </div>
       
       <Footer />
