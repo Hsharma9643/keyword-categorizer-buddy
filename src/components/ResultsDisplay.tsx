@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -23,7 +22,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
 
   const copyResults = () => {
     const text = results
-      .map((r) => `${r.keyword} - Intent: ${r.intent.toUpperCase()}, Tone: ${r.emotionalTone}, Depth: ${r.queryDepth}`)
+      .map((r) => `${r.keyword} - Intent: ${r.intent}, Tone: ${r.emotionalTone}, Depth: ${r.queryDepth}`)
       .join("\n");
     navigator.clipboard.writeText(text);
     toast({
@@ -35,9 +34,9 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   const downloadResults = () => {
     const csv = Papa.unparse(results.map(result => ({
       Keyword: result.keyword,
-      Intent: result.intent.charAt(0).toUpperCase() + result.intent.slice(1),
-      "Emotional Tone": result.emotionalTone.charAt(0).toUpperCase() + result.emotionalTone.slice(1),
-      "Query Depth": result.queryDepth.charAt(0).toUpperCase() + result.queryDepth.slice(1)
+      Intent: result.intent,
+      "Emotional Tone": result.emotionalTone,
+      "Query Depth": result.queryDepth
     })));
 
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -74,13 +73,13 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   }, {} as Record<string, number>);
 
   const intentChartData = Object.entries(intentCounts).map(([name, value]) => ({
-    name: name.charAt(0).toUpperCase() + name.slice(1),
+    name,
     value,
     originalName: name
   }));
 
   const emotionalToneChartData = Object.entries(emotionalToneCounts).map(([name, value]) => ({
-    name: name.charAt(0).toUpperCase() + name.slice(1),
+    name,
     value,
     originalName: name
   }));
@@ -195,7 +194,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                         color: result.intent === 'shortFact' ? 'black' : 'white'
                       }}
                     >
-                      {result.intent.charAt(0).toUpperCase() + result.intent.slice(1)}
+                      {result.intent}
                     </span>
                     <span
                       className="px-3 py-1 rounded-full text-sm font-medium text-white"
@@ -203,7 +202,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                         backgroundColor: COLORS[result.emotionalTone]
                       }}
                     >
-                      {result.emotionalTone.charAt(0).toUpperCase() + result.emotionalTone.slice(1)}
+                      {result.emotionalTone}
                     </span>
                     <span
                       className="px-3 py-1 rounded-full text-sm font-medium text-white"
@@ -211,7 +210,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                         backgroundColor: COLORS[result.queryDepth]
                       }}
                     >
-                      {result.queryDepth.charAt(0).toUpperCase() + result.queryDepth.slice(1)}
+                      {result.queryDepth}
                     </span>
                   </div>
                 </div>

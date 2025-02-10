@@ -15,10 +15,15 @@ const Index = () => {
   const handleAnalyze = async (keywords: string[]) => {
     try {
       const classifiedResults = await Promise.all(
-        keywords.map(async (keyword) => ({
-          keyword,
-          intent: await classifyQuery(keyword),
-        }))
+        keywords.map(async (keyword) => {
+          const analysis = await classifyQuery(keyword);
+          return {
+            keyword,
+            intent: analysis.intent,
+            emotionalTone: analysis.emotionalTone,
+            queryDepth: analysis.queryDepth
+          };
+        })
       );
       setResults(classifiedResults);
     } catch (error) {
