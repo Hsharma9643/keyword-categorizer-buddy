@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -178,6 +179,11 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
               </Button>
             </div>
           </div>
+          <div className="flex justify-end gap-2 mb-2 text-sm font-medium text-muted-foreground">
+            <span className="w-24 text-center">Intent</span>
+            <span className="w-24 text-center">Emotional Tone</span>
+            <span className="w-24 text-center">Query Depth</span>
+          </div>
           <div className="space-y-2">
             {results.map((result, index) => (
               <div
@@ -188,7 +194,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   <span className="font-medium">{result.keyword}</span>
                   <div className="flex gap-2">
                     <span
-                      className="px-3 py-1 rounded-full text-sm font-medium"
+                      className="px-3 py-1 rounded-full text-sm font-medium w-24 text-center"
                       style={{
                         backgroundColor: COLORS[result.intent],
                         color: result.intent === 'shortFact' ? 'black' : 'white'
@@ -197,7 +203,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                       {result.intent}
                     </span>
                     <span
-                      className="px-3 py-1 rounded-full text-sm font-medium text-white"
+                      className="px-3 py-1 rounded-full text-sm font-medium text-white w-24 text-center"
                       style={{
                         backgroundColor: COLORS[result.emotionalTone]
                       }}
@@ -205,7 +211,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                       {result.emotionalTone}
                     </span>
                     <span
-                      className="px-3 py-1 rounded-full text-sm font-medium text-white"
+                      className="px-3 py-1 rounded-full text-sm font-medium text-white w-24 text-center"
                       style={{
                         backgroundColor: COLORS[result.queryDepth]
                       }}
