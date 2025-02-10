@@ -1,7 +1,10 @@
+
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
+import { Download } from "lucide-react";
+import Papa from "papaparse";
 
 export type QueryIntent = 
   | "boolean" 
@@ -34,6 +37,32 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
       title: "Copied to clipboard",
       description: "Results have been copied to your clipboard",
     });
+  };
+
+  const downloadResults = () => {
+    // Convert results to CSV format
+    const csv = Papa.unparse(results.map(result => ({
+      Keyword: result.keyword,
+      Intent: result.intent.charAt(0).toUpperCase() + result.intent.slice(1)
+    })));
+
+    // Create blob and download link
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'keyword_intent_analysis.csv');
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      toast({
+        title: "Download started",
+        description: "Your results are being downloaded as a CSV file",
+      });
+    }
   };
 
   const intentCounts = results.reduce((acc, curr) => {
@@ -91,9 +120,15 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
         <div className="space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-semibold">Classified Queries</h3>
-            <Button onClick={copyResults} variant="outline" size="sm">
-              Copy Results
-            </Button>
+            <div className="flex gap-2">
+              <Button onClick={downloadResults} variant="outline" size="sm">
+                <Download className="h-4 w-4 mr-2" />
+                Download CSV
+              </Button>
+              <Button onClick={copyResults} variant="outline" size="sm">
+                Copy Results
+              </Button>
+            </div>
           </div>
           <div className="space-y-2">
             {results.map((result, index) => (
@@ -119,3 +154,4 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     </div>
   );
 };
+
