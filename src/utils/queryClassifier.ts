@@ -8,10 +8,108 @@ export type QueryIntent =
   | "shortFact" 
   | "other";
 
-export const classifyQuery = async (query: string): Promise<QueryIntent> => {
+export type EmotionalTone = 
+  | "urgency"
+  | "curiosity"
+  | "concern"
+  | "satisfaction"
+  | "frustration"
+  | "neutral";
+
+export type QueryDepth = "surface" | "detailed";
+
+export interface QueryAnalysis {
+  intent: QueryIntent;
+  emotionalTone: EmotionalTone;
+  queryDepth: QueryDepth;
+}
+
+const analyzeEmotionalTone = (query: string): EmotionalTone => {
   query = query.toLowerCase();
   
-  // Boolean questions (yes/no)
+  // Urgency patterns
+  if (
+    query.includes("urgent") ||
+    query.includes("immediately") ||
+    query.includes("asap") ||
+    query.includes("emergency") ||
+    query.includes("quick")
+  ) {
+    return "urgency";
+  }
+
+  // Curiosity patterns
+  if (
+    query.startsWith("how") ||
+    query.startsWith("why") ||
+    query.includes("curious") ||
+    query.includes("wonder") ||
+    query.includes("difference between")
+  ) {
+    return "curiosity";
+  }
+
+  // Concern patterns
+  if (
+    query.includes("worried") ||
+    query.includes("problem") ||
+    query.includes("issue") ||
+    query.includes("risk") ||
+    query.includes("danger")
+  ) {
+    return "concern";
+  }
+
+  // Satisfaction patterns
+  if (
+    query.includes("best") ||
+    query.includes("recommend") ||
+    query.includes("top") ||
+    query.includes("great") ||
+    query.includes("favorite")
+  ) {
+    return "satisfaction";
+  }
+
+  // Frustration patterns
+  if (
+    query.includes("wrong") ||
+    query.includes("bad") ||
+    query.includes("fail") ||
+    query.includes("worst") ||
+    query.includes("terrible")
+  ) {
+    return "frustration";
+  }
+
+  return "neutral";
+};
+
+const analyzeQueryDepth = (query: string): QueryDepth => {
+  const words = query.split(" ");
+  const hasMultipleQuestions = query.split("?").length > 2;
+  const hasDetailedQualifiers = 
+    query.includes("specifically") ||
+    query.includes("in detail") ||
+    query.includes("step by step") ||
+    query.includes("compared to") ||
+    query.includes("difference between");
+
+  // Consider a query detailed if it's longer than 6 words OR contains multiple questions
+  // OR uses detailed qualifiers
+  if (words.length > 6 || hasMultipleQuestions || hasDetailedQualifiers) {
+    return "detailed";
+  }
+
+  return "surface";
+};
+
+export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
+  query = query.toLowerCase();
+  
+  // Existing intent classification logic
+  let intent: QueryIntent = "other";
+  
   if (
     query.startsWith("can") ||
     query.startsWith("is") ||
@@ -21,11 +119,8 @@ export const classifyQuery = async (query: string): Promise<QueryIntent> => {
     query.startsWith("will") ||
     query.startsWith("should")
   ) {
-    return "boolean";
-  }
-
-  // Consequence patterns
-  if (
+    intent = "boolean";
+  } else if (
     query.includes("what happens") ||
     query.includes("outcome") ||
     query.includes("result") ||
@@ -33,11 +128,8 @@ export const classifyQuery = async (query: string): Promise<QueryIntent> => {
     query.includes("impact") ||
     query.includes("lead to")
   ) {
-    return "consequence";
-  }
-
-  // Instruction patterns
-  if (
+    intent = "consequence";
+  } else if (
     query.includes("how to") ||
     query.includes("steps to") ||
     query.includes("guide") ||
@@ -46,11 +138,8 @@ export const classifyQuery = async (query: string): Promise<QueryIntent> => {
     query.startsWith("create") ||
     query.startsWith("make")
   ) {
-    return "instruction";
-  }
-
-  // Comparison patterns
-  if (
+    intent = "instruction";
+  } else if (
     query.includes("vs") ||
     query.includes("versus") ||
     query.includes("compare") ||
@@ -59,11 +148,8 @@ export const classifyQuery = async (query: string): Promise<QueryIntent> => {
     query.includes("worse") ||
     query.includes("between")
   ) {
-    return "comparison";
-  }
-
-  // Definition patterns
-  if (
+    intent = "comparison";
+  } else if (
     query.startsWith("what is") ||
     query.startsWith("what are") ||
     query.includes("meaning") ||
@@ -71,21 +157,15 @@ export const classifyQuery = async (query: string): Promise<QueryIntent> => {
     query.includes("definition") ||
     query.includes("explain")
   ) {
-    return "definition";
-  }
-
-  // Reason patterns
-  if (
+    intent = "definition";
+  } else if (
     query.startsWith("why") ||
     query.includes("reason") ||
     query.includes("cause") ||
     query.includes("because")
   ) {
-    return "reason";
-  }
-
-  // Short Fact patterns - Updated with more precise patterns
-  if (
+    intent = "reason";
+  } else if (
     query.startsWith("who") ||
     query.startsWith("when") ||
     query.startsWith("where") ||
@@ -95,13 +175,15 @@ export const classifyQuery = async (query: string): Promise<QueryIntent> => {
     query.match(/^what.*(?:date|year|time|number|amount|percentage|rate)/i) ||
     query.match(/^(capital|population|height|weight|distance|size) of/i) ||
     query.match(/^(list|name|give|tell).*(?:countries|cities|people|numbers)/i) ||
-    // Match queries that look like they're asking for a direct fact
-    query.match(/^[a-z\s]+ of [a-z\s]+$/i) || // e.g. "capital of France"
+    query.match(/^[a-z\s]+ of [a-z\s]+$/i) ||
     query.match(/^(tallest|shortest|biggest|smallest|longest|highest|lowest)/i)
   ) {
-    return "shortFact";
+    intent = "shortFact";
   }
 
-  // Default to other
-  return "other";
+  return {
+    intent,
+    emotionalTone: analyzeEmotionalTone(query),
+    queryDepth: analyzeQueryDepth(query)
+  };
 };
