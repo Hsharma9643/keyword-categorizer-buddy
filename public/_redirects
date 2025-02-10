@@ -1,0 +1,4 @@
+
+# Redirect Netlify subdomain to main domain
+https://seo-keyword-classifier-tool.netlify.app/* https://keyword-intent-classifier.com/:splat 301!
+http://seo-keyword-classifier-tool.netlify.app/* https://keyword-intent-classifier.com/:splat 301!
