@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
@@ -74,9 +73,6 @@ const Index = () => {
 
             <div className="bg-muted rounded-lg p-6">
               <h2 className="text-xl font-semibold mb-4">Keyword Intent Categories & Their Meaning</h2>
-              <p className="text-muted-foreground mb-6">
-                The eight categories used in this tool classify user queries based on their linguistic structure and intent. Understanding these categories helps predict the type of response users expect, making it easier to optimize content for search engines.
-              </p>
               <div className="space-y-6">
                 <div>
                   <h3 className="font-semibold mb-2">1. Boolean</h3>
@@ -119,6 +115,30 @@ const Index = () => {
                   <p className="text-muted-foreground">🔹 Example: "Tell me a joke."</p>
                 </div>
               </div>
+            </div>
+
+            <div className="bg-muted rounded-lg p-6">
+              <h2 className="text-xl font-semibold mb-4">Emotional Tone & Query Depth</h2>
+              <p className="text-muted-foreground mb-6">
+                My Free SEO Intent Classifier now goes further than ever before in decoding search query intent. Using advanced pattern recognition, it not only categorises user-provided keywords or phrases into one of eight predefined intent categories but also evaluates two new dimensions—Emotional Tone and Query Depth.
+              </p>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-semibold mb-2">Emotional Tone Analysis</h3>
+                  <p className="text-muted-foreground">
+                    Our tool examines the language behind each query to identify sentiment cues such as urgency, curiosity, or neutrality. This means you can quickly discern whether a searcher's query carries an urgent call-to-action or a thoughtful inquiry, helping you tailor your content to the right mood.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">Query Depth Measurement</h3>
+                  <p className="text-muted-foreground">
+                    In addition to categorising intent, our classifier now distinguishes between surface-level and in-depth queries. This feature ensures that you understand not only what your users are asking, but also how detailed or complex their search needs are—empowering you to create content that meets both quick answer and comprehensive insight demands.
+                  </p>
+                </div>
+              </div>
+              <p className="text-muted-foreground mt-6">
+                By integrating these additional intent dimensions into our robust analysis workflow, My Free SEO Intent Classifier delivers clearer, more actionable insights into what searchers are looking for. Optimise your SEO strategy and content creation with a tool that goes beyond basic categorisation—providing the nuance necessary to outsmart the competition and connect with your audience effectively.
+              </p>
             </div>
 
             <div className="bg-muted rounded-lg p-6">
