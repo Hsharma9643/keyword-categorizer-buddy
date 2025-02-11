@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -131,7 +132,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ backgroundColor: '#333', color: '#fff' }} />
+              <Tooltip contentStyle={{ backgroundColor: '#333', color: '#fff' }} itemStyle={{ color: '#fff' }} />
               <Legend formatter={(value) => <span style={{ color: '#333' }}>{value}</span>} />
             </PieChart>
           </ResponsiveContainer>
@@ -159,7 +160,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ backgroundColor: '#333', color: '#fff' }} />
+              <Tooltip contentStyle={{ backgroundColor: '#333', color: '#fff' }} itemStyle={{ color: '#fff' }} />
               <Legend formatter={(value) => <span style={{ color: '#333' }}>{value}</span>} />
             </PieChart>
           </ResponsiveContainer>
