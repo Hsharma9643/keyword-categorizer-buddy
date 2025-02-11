@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -6,6 +5,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recha
 import { Download } from "lucide-react";
 import Papa from "papaparse";
 import { QueryIntent, EmotionalTone, QueryDepth } from "@/utils/queryClassifier";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export interface KeywordResult {
   keyword: string;
@@ -20,6 +20,7 @@ interface ResultsDisplayProps {
 
 export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
   const copyResults = () => {
     const text = results
@@ -167,57 +168,70 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
 
       <Card className="p-6">
         <div className="space-y-4">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <h3 className="text-lg font-semibold">Classified Queries</h3>
-            <div className="flex gap-2">
-              <Button onClick={downloadResults} variant="outline" size="sm">
+            <div className="flex gap-2 w-full sm:w-auto">
+              <Button onClick={downloadResults} variant="outline" size="sm" className="flex-1 sm:flex-initial">
                 <Download className="h-4 w-4 mr-2" />
                 Download CSV
               </Button>
-              <Button onClick={copyResults} variant="outline" size="sm">
+              <Button onClick={copyResults} variant="outline" size="sm" className="flex-1 sm:flex-initial">
                 Copy Results
               </Button>
             </div>
           </div>
-          <div className="flex justify-end gap-2 mb-2 text-sm font-medium text-muted-foreground">
-            <span className="w-24 text-center">Intent</span>
-            <span className="w-24 text-center">Emotional Tone</span>
-            <span className="w-24 text-center">Query Depth</span>
-          </div>
+          
+          {!isMobile && (
+            <div className="flex justify-end gap-2 mb-2 text-sm font-medium text-muted-foreground">
+              <span className="w-24 text-center">Intent</span>
+              <span className="w-24 text-center">Emotional Tone</span>
+              <span className="w-24 text-center">Query Depth</span>
+            </div>
+          )}
+
           <div className="space-y-2">
             {results.map((result, index) => (
               <div
                 key={index}
                 className="p-4 bg-muted rounded-lg space-y-2"
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-medium">{result.keyword}</span>
-                  <div className="flex gap-2">
-                    <span
-                      className="px-3 py-1 rounded-full text-sm font-medium w-24 text-center"
-                      style={{
-                        backgroundColor: COLORS[result.intent],
-                        color: result.intent === 'shortFact' ? 'black' : 'white'
-                      }}
-                    >
-                      {result.intent}
-                    </span>
-                    <span
-                      className="px-3 py-1 rounded-full text-sm font-medium text-white w-24 text-center"
-                      style={{
-                        backgroundColor: COLORS[result.emotionalTone]
-                      }}
-                    >
-                      {result.emotionalTone}
-                    </span>
-                    <span
-                      className="px-3 py-1 rounded-full text-sm font-medium text-white w-24 text-center"
-                      style={{
-                        backgroundColor: COLORS[result.queryDepth]
-                      }}
-                    >
-                      {result.queryDepth}
-                    </span>
+                <div className={`flex ${isMobile ? 'flex-col gap-2' : 'items-center justify-between'}`}>
+                  <span className="font-medium mb-2 sm:mb-0">{result.keyword}</span>
+                  <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2`}>
+                    <div className="flex gap-2 items-center">
+                      {isMobile && <span className="text-sm text-muted-foreground w-24">Intent:</span>}
+                      <span
+                        className="px-3 py-1 rounded-full text-sm font-medium w-full sm:w-24 text-center"
+                        style={{
+                          backgroundColor: COLORS[result.intent],
+                          color: result.intent === 'shortFact' ? 'black' : 'white'
+                        }}
+                      >
+                        {result.intent}
+                      </span>
+                    </div>
+                    <div className="flex gap-2 items-center">
+                      {isMobile && <span className="text-sm text-muted-foreground w-24">Tone:</span>}
+                      <span
+                        className="px-3 py-1 rounded-full text-sm font-medium text-white w-full sm:w-24 text-center"
+                        style={{
+                          backgroundColor: COLORS[result.emotionalTone]
+                        }}
+                      >
+                        {result.emotionalTone}
+                      </span>
+                    </div>
+                    <div className="flex gap-2 items-center">
+                      {isMobile && <span className="text-sm text-muted-foreground w-24">Depth:</span>}
+                      <span
+                        className="px-3 py-1 rounded-full text-sm font-medium text-white w-full sm:w-24 text-center"
+                        style={{
+                          backgroundColor: COLORS[result.queryDepth]
+                        }}
+                      >
+                        {result.queryDepth}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
