@@ -87,6 +87,12 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     originalName: name
   }));
 
+  const queryDepthChartData = Object.entries(queryDepthCounts).map(([name, value]) => ({
+    name,
+    value,
+    originalName: name
+  }));
+
   const COLORS = {
     // Intent colors
     boolean: "#1A1F2C",
@@ -111,61 +117,91 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
 
   return (
     <div className="space-y-6">
-      <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-4">Intent Distribution</h3>
-        <div className="h-[300px] text-gray-800">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={intentChartData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                outerRadius={100}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {intentChartData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[entry.originalName as keyof typeof COLORS]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip contentStyle={{ backgroundColor: '#333', color: '#fff' }} itemStyle={{ color: '#fff' }} />
-              <Legend formatter={(value) => <span style={{ color: '#333' }}>{value}</span>} />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </Card>
+      <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-3'} gap-4`}>
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-4">Intent Distribution</h3>
+          <div className="h-[300px] text-gray-800">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={intentChartData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  outerRadius={isMobile ? 100 : 80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {intentChartData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[entry.originalName as keyof typeof COLORS]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ backgroundColor: '#333', color: '#fff' }} itemStyle={{ color: '#fff' }} />
+                <Legend formatter={(value) => <span style={{ color: '#333' }}>{value}</span>} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </Card>
 
-      <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-4">Emotional Tone Distribution</h3>
-        <div className="h-[300px] text-gray-800">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={emotionalToneChartData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                outerRadius={100}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {emotionalToneChartData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[entry.originalName as keyof typeof COLORS]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip contentStyle={{ backgroundColor: '#333', color: '#fff' }} itemStyle={{ color: '#fff' }} />
-              <Legend formatter={(value) => <span style={{ color: '#333' }}>{value}</span>} />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </Card>
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-4">Emotional Tone Distribution</h3>
+          <div className="h-[300px] text-gray-800">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={emotionalToneChartData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  outerRadius={isMobile ? 100 : 80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {emotionalToneChartData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[entry.originalName as keyof typeof COLORS]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ backgroundColor: '#333', color: '#fff' }} itemStyle={{ color: '#fff' }} />
+                <Legend formatter={(value) => <span style={{ color: '#333' }}>{value}</span>} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </Card>
+
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-4">Query Depth Distribution</h3>
+          <div className="h-[300px] text-gray-800">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={queryDepthChartData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  outerRadius={isMobile ? 100 : 80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {queryDepthChartData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[entry.originalName as keyof typeof COLORS]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ backgroundColor: '#333', color: '#fff' }} itemStyle={{ color: '#fff' }} />
+                <Legend formatter={(value) => <span style={{ color: '#333' }}>{value}</span>} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </Card>
+      </div>
 
       <Card className="p-6">
         <div className="space-y-4">
