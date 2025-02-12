@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
@@ -166,6 +167,11 @@ const Index = () => {
                   <h3 className="font-semibold mb-2">🔹 E-commerce Businesses</h3>
                   <p className="text-muted-foreground">✔️ Understand transactional vs. informational intent to optimize product and category pages.</p>
                   <p className="text-muted-foreground">✔️ Improve internal linking by connecting users to relevant content.</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">🔹 YouTubers</h3>
+                  <p className="text-muted-foreground">✔️ Helps YouTube creators fine-tune video titles, descriptions, and tags by aligning them with the underlying search intent.</p>
+                  <p className="text-muted-foreground">✔️ Reveals the emotional tone and query depth of user searches, guiding content creation to better resonate with your target audience.</p>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">🔹 AI & Chatbot Developers</h3>
