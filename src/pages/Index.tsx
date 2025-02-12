@@ -125,15 +125,27 @@ const Index = () => {
               </p>
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-semibold mb-2">Emotional Tone Analysis</h3>
+                  <h3 className="font-semibold mb-2">🔹 Emotional Tone Analysis</h3>
                   <p className="text-muted-foreground">
-                    Our tool examines the language behind each query to identify sentiment cues such as urgency, curiosity, or neutrality. This means you can quickly discern whether a searcher's query carries an urgent call-to-action or a thoughtful inquiry, helping you tailor your content to the right mood.
+                    ✔️ Advanced language pattern recognition to identify sentiment cues such as urgency, curiosity, or neutrality.
+                  </p>
+                  <p className="text-muted-foreground">
+                    ✔️ Quickly discern whether a searcher's query carries an urgent call-to-action or a thoughtful inquiry.
+                  </p>
+                  <p className="text-muted-foreground">
+                    ✔️ Helps you tailor your content to match the emotional context of the search.
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Query Depth Measurement</h3>
+                  <h3 className="font-semibold mb-2">🔹 Query Depth Measurement</h3>
                   <p className="text-muted-foreground">
-                    In addition to categorising intent, our classifier now distinguishes between surface-level and in-depth queries. This feature ensures that you understand not only what your users are asking, but also how detailed or complex their search needs are—empowering you to create content that meets both quick answer and comprehensive insight demands.
+                    ✔️ Distinguishes between surface-level and in-depth queries for better content planning.
+                  </p>
+                  <p className="text-muted-foreground">
+                    ✔️ Understand not only what users are asking but also how detailed their search needs are.
+                  </p>
+                  <p className="text-muted-foreground">
+                    ✔️ Empowers you to create content that meets both quick answer and comprehensive insight demands.
                   </p>
                 </div>
               </div>
