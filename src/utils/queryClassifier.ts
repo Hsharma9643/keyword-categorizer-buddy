@@ -1,8 +1,9 @@
+
 export type QueryIntent = 
   | "boolean" 
   | "consequence" 
   | "instruction" 
-  | "comparison"
+  | "comparison" 
   | "definition" 
   | "reason" 
   | "shortFact" 
@@ -107,17 +108,19 @@ const analyzeQueryDepth = (query: string): QueryDepth => {
 export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
   query = query.toLowerCase();
   
-  // Existing intent classification logic
+  // Intent classification logic
   let intent: QueryIntent = "other";
   
+  // Only classify as boolean if the query STARTS with these words AND has a question structure
   if (
-    query.startsWith("can") ||
-    query.startsWith("is") ||
-    query.startsWith("are") ||
-    query.startsWith("does") ||
-    query.startsWith("do") ||
-    query.startsWith("will") ||
-    query.startsWith("should")
+    (query.startsWith("can ") ||
+    query.startsWith("is ") ||
+    query.startsWith("are ") ||
+    query.startsWith("does ") ||
+    query.startsWith("do ") ||
+    query.startsWith("will ") ||
+    query.startsWith("should ")) &&
+    query.includes("?")
   ) {
     intent = "boolean";
   } else if (
