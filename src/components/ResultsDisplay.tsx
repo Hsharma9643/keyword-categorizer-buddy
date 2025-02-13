@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -95,6 +94,15 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
 
   const COLORS = {
     // Intent colors
+    explicitLocal: "#8B5CF6", // Electric Violet
+    product: "#FEC6A1", // Pumpkin
+    service: "#9F9EA1", // Silver
+    brand: "#F97316", // Burnt Orange
+    featureAttribute: "#403E43", // Facebook Navy Blue
+    pricing: "#2F4F4F", // Pine Green
+    seasonalPromotional: "#FA8072", // Salmon
+    other: "#F2FCE2", // Oatmeal
+    uncategorized: "#D946EF", // Ultra Violet
     boolean: "#1A1F2C",
     consequence: "#ea384c",
     instruction: "#ADD8E6",
@@ -102,7 +110,6 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     definition: "#3E2723",
     reason: "#E0115F",
     shortFact: "#F4C430",
-    other: "#8B5CF6",
     // Emotional tone colors
     urgency: "#FF4B4B",
     curiosity: "#4B9EFF",
