@@ -111,9 +111,49 @@ const Index = () => {
                   <p className="text-muted-foreground">🔹 Example: "Who invented the telephone?"</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">8. Other</h3>
-                  <p className="text-muted-foreground">✔️ Covers queries that don't fit standard categories.</p>
-                  <p className="text-muted-foreground">🔹 Example: "Tell me a joke."</p>
+                  <h3 className="font-semibold mb-2">8. Explicit Local</h3>
+                  <p className="text-muted-foreground">✔️ Identifies location-specific queries and local searches.</p>
+                  <p className="text-muted-foreground">🔹 Example: "Coffee shops near me" or "Restaurants in London"</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">9. Product</h3>
+                  <p className="text-muted-foreground">✔️ Detects queries about tangible items or products.</p>
+                  <p className="text-muted-foreground">🔹 Example: "Laptop backpack" or "iPhone cover"</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">10. Service</h3>
+                  <p className="text-muted-foreground">✔️ Identifies queries related to services or service providers.</p>
+                  <p className="text-muted-foreground">🔹 Example: "House cleaning services" or "Car repair"</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">11. Brand</h3>
+                  <p className="text-muted-foreground">✔️ Recognizes brand-specific searches and company names.</p>
+                  <p className="text-muted-foreground">🔹 Example: "Nike shoes" or "Apple MacBook"</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">12. Feature or Attribute</h3>
+                  <p className="text-muted-foreground">✔️ Identifies queries about specific characteristics or properties.</p>
+                  <p className="text-muted-foreground">🔹 Example: "Vegan snacks" or "Waterproof cameras"</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">13. Pricing</h3>
+                  <p className="text-muted-foreground">✔️ Detects queries about costs, prices, or affordability.</p>
+                  <p className="text-muted-foreground">🔹 Example: "How much is iPhone 15?" or "Cheap hotels"</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">14. Seasonal or Promotional</h3>
+                  <p className="text-muted-foreground">✔️ Identifies queries related to sales, discounts, or seasonal events.</p>
+                  <p className="text-muted-foreground">🔹 Example: "Black Friday deals" or "Christmas offers"</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">15. Other</h3>
+                  <p className="text-muted-foreground">✔️ Covers relevant queries that don't fit standard categories.</p>
+                  <p className="text-muted-foreground">🔹 Example: "Popular trends 2024"</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">16. Uncategorized</h3>
+                  <p className="text-muted-foreground">✔️ Queries with no clear category fit or low confidence classification.</p>
+                  <p className="text-muted-foreground">🔹 Example: Ambiguous or unclear queries</p>
                 </div>
               </div>
             </div>
