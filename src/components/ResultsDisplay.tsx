@@ -101,7 +101,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     featureAttribute: "#403E43", // Facebook Navy Blue
     pricing: "#2F4F4F", // Pine Green
     seasonalPromotional: "#FA8072", // Salmon
-    other: "#F2FCE2", // Oatmeal
+    other: "#FEC6A1", // Orange (changed from Oatmeal)
     uncategorized: "#D946EF", // Ultra Violet
     boolean: "#1A1F2C",
     consequence: "#ea384c",

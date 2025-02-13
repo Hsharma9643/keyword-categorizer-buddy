@@ -118,8 +118,16 @@ export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
   // Intent classification logic
   let intent: QueryIntent = "uncategorized";
   
-  // Explicit Local Intent
+  // Product Intent - Moving this check earlier and adding more product-related patterns
   if (
+    query.match(/\b(buy|purchase|shop|shopping|order)\b/) ||
+    query.match(/\b(product|item|device|gadget|equipment|cover|case|accessory)\b/) ||
+    query.match(/\b(laptop|phone|camera|watch|clothing|shoes|accessories|iphone)\b/)
+  ) {
+    intent = "product";
+  }
+  // Explicit Local Intent
+  else if (
     query.includes("near me") ||
     query.includes("in ") ||
     query.includes("around ") ||
@@ -127,14 +135,6 @@ export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
     query.match(/\b(city|town|state|country|region)\b/)
   ) {
     intent = "explicitLocal";
-  }
-  // Product Intent
-  else if (
-    query.match(/\b(buy|purchase|shop|shopping|order)\b/) ||
-    query.match(/\b(product|item|device|gadget|equipment)\b/) ||
-    query.match(/\b(laptop|phone|camera|watch|clothing|shoes|accessories)\b/)
-  ) {
-    intent = "product";
   }
   // Service Intent
   else if (
