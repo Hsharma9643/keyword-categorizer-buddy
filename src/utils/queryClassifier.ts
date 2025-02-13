@@ -1,4 +1,3 @@
-
 export type QueryIntent = 
   | "boolean" 
   | "consequence" 
@@ -6,8 +5,16 @@ export type QueryIntent =
   | "comparison" 
   | "definition" 
   | "reason" 
-  | "shortFact" 
-  | "other";
+  | "shortFact"
+  | "explicitLocal"
+  | "product"
+  | "service"
+  | "brand"
+  | "featureAttribute"
+  | "pricing"
+  | "seasonalPromotional" 
+  | "other"
+  | "uncategorized";
 
 export type EmotionalTone = 
   | "urgency"
@@ -109,10 +116,70 @@ export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
   query = query.toLowerCase();
   
   // Intent classification logic
-  let intent: QueryIntent = "other";
+  let intent: QueryIntent = "uncategorized";
   
-  // Only classify as boolean if the query STARTS with these words AND has a question structure
+  // Explicit Local Intent
   if (
+    query.includes("near me") ||
+    query.includes("in ") ||
+    query.includes("around ") ||
+    query.match(/\b(local|nearby|closest)\b/) ||
+    query.match(/\b(city|town|state|country|region)\b/)
+  ) {
+    intent = "explicitLocal";
+  }
+  // Product Intent
+  else if (
+    query.match(/\b(buy|purchase|shop|shopping|order)\b/) ||
+    query.match(/\b(product|item|device|gadget|equipment)\b/) ||
+    query.match(/\b(laptop|phone|camera|watch|clothing|shoes|accessories)\b/)
+  ) {
+    intent = "product";
+  }
+  // Service Intent
+  else if (
+    query.match(/\b(service|provider|consultant|agency)\b/) ||
+    query.match(/\b(repair|maintenance|installation|support|help)\b/) ||
+    query.includes("how to get") ||
+    query.includes("who can")
+  ) {
+    intent = "service";
+  }
+  // Brand Intent
+  else if (
+    query.match(/\b(brand|manufacturer|company|vendor)\b/) ||
+    query.match(/\b(nike|adidas|apple|samsung|google|amazon)\b/) // Add more common brands
+  ) {
+    intent = "brand";
+  }
+  // Feature or Attribute Intent
+  else if (
+    query.match(/\b(feature|specification|characteristic|property)\b/) ||
+    query.match(/\b(size|color|weight|height|width|length)\b/) ||
+    query.match(/\b(vegan|organic|wireless|waterproof|sustainable)\b/)
+  ) {
+    intent = "featureAttribute";
+  }
+  // Pricing Intent
+  else if (
+    query.match(/\b(price|cost|fee|rate|pricing)\b/) ||
+    query.match(/\b(cheap|expensive|affordable|budget)\b/) ||
+    query.startsWith("how much") ||
+    query.includes("$") ||
+    query.includes("dollar")
+  ) {
+    intent = "pricing";
+  }
+  // Seasonal or Promotional Intent
+  else if (
+    query.match(/\b(sale|discount|deal|offer|promotion)\b/) ||
+    query.match(/\b(christmas|halloween|black friday|cyber monday)\b/) ||
+    query.match(/\b(season|seasonal|holiday|festival)\b/)
+  ) {
+    intent = "seasonalPromotional";
+  }
+  // Boolean Intent
+  else if (
     (query.startsWith("can ") ||
     query.startsWith("is ") ||
     query.startsWith("are ") ||
@@ -123,7 +190,9 @@ export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
     query.includes("?")
   ) {
     intent = "boolean";
-  } else if (
+  }
+  // Consequence Intent
+  else if (
     query.includes("what happens") ||
     query.includes("outcome") ||
     query.includes("result") ||
@@ -132,7 +201,9 @@ export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
     query.includes("lead to")
   ) {
     intent = "consequence";
-  } else if (
+  }
+  // Instruction Intent
+  else if (
     query.includes("how to") ||
     query.includes("steps to") ||
     query.includes("guide") ||
@@ -142,7 +213,9 @@ export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
     query.startsWith("make")
   ) {
     intent = "instruction";
-  } else if (
+  }
+  // Comparison Intent
+  else if (
     query.includes("vs") ||
     query.includes("versus") ||
     query.includes("compare") ||
@@ -152,7 +225,9 @@ export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
     query.includes("between")
   ) {
     intent = "comparison";
-  } else if (
+  }
+  // Definition Intent
+  else if (
     query.startsWith("what is") ||
     query.startsWith("what are") ||
     query.includes("meaning") ||
@@ -161,14 +236,18 @@ export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
     query.includes("explain")
   ) {
     intent = "definition";
-  } else if (
+  }
+  // Reason Intent
+  else if (
     query.startsWith("why") ||
     query.includes("reason") ||
     query.includes("cause") ||
     query.includes("because")
   ) {
     intent = "reason";
-  } else if (
+  }
+  // Short Fact Intent
+  else if (
     query.startsWith("who") ||
     query.startsWith("when") ||
     query.startsWith("where") ||
@@ -182,6 +261,10 @@ export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
     query.match(/^(tallest|shortest|biggest|smallest|longest|highest|lowest)/i)
   ) {
     intent = "shortFact";
+  }
+  // Other Intent (queries that are valid but don't fit other categories)
+  else if (query.trim().length > 0) {
+    intent = "other";
   }
 
   return {
