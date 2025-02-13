@@ -1,3 +1,4 @@
+
 export type QueryIntent = 
   | "boolean" 
   | "consequence" 
@@ -170,9 +171,9 @@ export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
   ) {
     intent = "pricing";
   }
-  // Seasonal or Promotional Intent
+  // Seasonal or Promotional Intent - Adding "offers" pattern
   else if (
-    query.match(/\b(sale|discount|deal|offer|promotion)\b/) ||
+    query.match(/\b(sale|discount|deal|offer|offers|promotion)\b/) ||
     query.match(/\b(christmas|halloween|black friday|cyber monday)\b/) ||
     query.match(/\b(season|seasonal|holiday|festival)\b/)
   ) {
