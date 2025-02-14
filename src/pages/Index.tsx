@@ -20,6 +20,7 @@ const Index = () => {
           return {
             keyword,
             intent: analysis.intent,
+            confidence: analysis.confidence, // Added confidence score
             emotionalTone: analysis.emotionalTone,
             queryDepth: analysis.queryDepth
           };
