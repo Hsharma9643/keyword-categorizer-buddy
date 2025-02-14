@@ -1,4 +1,3 @@
-
 export type QueryIntent = 
   | "boolean" 
   | "consequence" 
@@ -29,9 +28,120 @@ export type QueryDepth = "surface" | "detailed";
 
 export interface QueryAnalysis {
   intent: QueryIntent;
+  confidence: number;
   emotionalTone: EmotionalTone;
   queryDepth: QueryDepth;
 }
+
+interface PatternMatch {
+  pattern: RegExp | string;
+  weight: number;
+}
+
+const intentPatterns: Record<QueryIntent, PatternMatch[]> = {
+  product: [
+    { pattern: /\b(buy|purchase|shop|shopping|order)\b/, weight: 0.8 },
+    { pattern: /\b(product|item|device|gadget|equipment)\b/, weight: 0.7 },
+    { pattern: /\b(laptop|phone|camera|watch|clothing|shoes)\b/, weight: 0.6 },
+    { pattern: /\b(new|latest)\b.*\b(product|item|device)\b/, weight: 0.9 }
+  ],
+  explicitLocal: [
+    { pattern: "near me", weight: 0.9 },
+    { pattern: /\b(in|at|around|near) [A-Z][a-z]+/, weight: 0.8 },
+    { pattern: /\b(local|nearby|closest)\b/, weight: 0.7 },
+    { pattern: /\b(city|town|state|country|region)\b/, weight: 0.6 }
+  ],
+  service: [
+    { pattern: /\b(service|provider|consultant|agency)\b/, weight: 0.8 },
+    { pattern: /\b(repair|maintenance|installation|support)\b/, weight: 0.7 },
+    { pattern: "how to get", weight: 0.6 },
+    { pattern: "who can", weight: 0.6 }
+  ],
+  brand: [
+    { pattern: /\b(brand|manufacturer|company|vendor)\b/, weight: 0.7 },
+    { pattern: /\b(nike|adidas|apple|samsung|google|amazon)\b/, weight: 0.9 },
+    { pattern: /[A-Z][a-z]+'s/, weight: 0.6 }
+  ],
+  featureAttribute: [
+    { pattern: /\b(feature|specification|characteristic|property)\b/, weight: 0.8 },
+    { pattern: /\b(size|color|weight|height|width|length)\b/, weight: 0.7 },
+    { pattern: /\b(vegan|organic|wireless|waterproof|sustainable)\b/, weight: 0.7 }
+  ],
+  pricing: [
+    { pattern: /\b(price|cost|fee|rate|pricing)\b/, weight: 0.8 },
+    { pattern: /\b(cheap|expensive|affordable|budget)\b/, weight: 0.7 },
+    { pattern: "how much", weight: 0.9 },
+    { pattern: /\$|\$[0-9]+/, weight: 0.9 }
+  ],
+  seasonalPromotional: [
+    { pattern: /\b(sale|discount|deal|offer|promotion)\b/, weight: 0.8 },
+    { pattern: /\b(christmas|halloween|black friday|cyber monday)\b/, weight: 0.9 },
+    { pattern: /\b(season|seasonal|holiday|festival)\b/, weight: 0.7 }
+  ],
+  boolean: [
+    { pattern: /^(can|is|are|does|do|will|should) .*\?$/, weight: 0.9 },
+    { pattern: /\b(possible|allowed|available)\b/, weight: 0.7 }
+  ],
+  consequence: [
+    { pattern: "what happens", weight: 0.9 },
+    { pattern: /\b(outcome|result|effect|impact)\b/, weight: 0.8 },
+    { pattern: "lead to", weight: 0.7 }
+  ],
+  instruction: [
+    { pattern: "how to", weight: 0.9 },
+    { pattern: /\b(steps|guide|tutorial)\b/, weight: 0.8 },
+    { pattern: /^(build|create|make)/, weight: 0.7 }
+  ],
+  comparison: [
+    { pattern: /\b(vs|versus|compare|difference)\b/, weight: 0.9 },
+    { pattern: /\b(better|worse|between)\b/, weight: 0.7 },
+    { pattern: /\b(compared to|over|or)\b/, weight: 0.6 }
+  ],
+  definition: [
+    { pattern: /^what (is|are)/, weight: 0.9 },
+    { pattern: /\b(meaning|define|definition|explain)\b/, weight: 0.8 }
+  ],
+  reason: [
+    { pattern: /^why/, weight: 0.9 },
+    { pattern: /\b(reason|cause|because)\b/, weight: 0.8 }
+  ],
+  shortFact: [
+    { pattern: /^(who|when|where|how many|which)/, weight: 0.9 },
+    { pattern: /^what.*(?:date|year|time|number)/, weight: 0.8 },
+    { pattern: /^(capital|population|height|weight) of/, weight: 0.8 }
+  ],
+  other: [
+    { pattern: /.+/, weight: 0.3 } // Catch-all with low confidence
+  ],
+  uncategorized: [
+    { pattern: /.+/, weight: 0.1 } // Lowest confidence for uncategorized
+  ]
+};
+
+const calculateConfidence = (query: string, patterns: PatternMatch[]): number => {
+  let maxConfidence = 0;
+  let matches = 0;
+  let totalWeight = 0;
+
+  patterns.forEach(({ pattern, weight }) => {
+    const isMatch = typeof pattern === 'string' 
+      ? query.includes(pattern)
+      : pattern.test(query);
+    
+    if (isMatch) {
+      matches++;
+      totalWeight += weight;
+      maxConfidence = Math.max(maxConfidence, weight);
+    }
+  });
+
+  // Calculate final confidence score
+  if (matches === 0) return 0;
+  
+  // Weighted average between highest single match and overall match ratio
+  const matchRatio = totalWeight / patterns.length;
+  return Math.min(0.7 * maxConfidence + 0.3 * matchRatio, 1);
+};
 
 const analyzeEmotionalTone = (query: string): EmotionalTone => {
   query = query.toLowerCase();
@@ -116,160 +226,25 @@ const analyzeQueryDepth = (query: string): QueryDepth => {
 export const classifyQuery = async (query: string): Promise<QueryAnalysis> => {
   query = query.toLowerCase();
   
-  // Intent classification logic
-  let intent: QueryIntent = "uncategorized";
-  
-  // Product Intent - Moving this check earlier and adding more product-related patterns
-  if (
-    query.match(/\b(buy|purchase|shop|shopping|order)\b/) ||
-    query.match(/\b(product|item|device|gadget|equipment|cover|case|accessory)\b/) ||
-    query.match(/\b(laptop|phone|camera|watch|clothing|shoes|accessories|iphone)\b/)
-  ) {
-    intent = "product";
-  }
-  // Explicit Local Intent
-  else if (
-    query.includes("near me") ||
-    query.includes("in ") ||
-    query.includes("around ") ||
-    query.match(/\b(local|nearby|closest)\b/) ||
-    query.match(/\b(city|town|state|country|region)\b/)
-  ) {
-    intent = "explicitLocal";
-  }
-  // Service Intent
-  else if (
-    query.match(/\b(service|provider|consultant|agency)\b/) ||
-    query.match(/\b(repair|maintenance|installation|support|help)\b/) ||
-    query.includes("how to get") ||
-    query.includes("who can")
-  ) {
-    intent = "service";
-  }
-  // Brand Intent
-  else if (
-    query.match(/\b(brand|manufacturer|company|vendor)\b/) ||
-    query.match(/\b(nike|adidas|apple|samsung|google|amazon)\b/) // Add more common brands
-  ) {
-    intent = "brand";
-  }
-  // Feature or Attribute Intent
-  else if (
-    query.match(/\b(feature|specification|characteristic|property)\b/) ||
-    query.match(/\b(size|color|weight|height|width|length)\b/) ||
-    query.match(/\b(vegan|organic|wireless|waterproof|sustainable)\b/)
-  ) {
-    intent = "featureAttribute";
-  }
-  // Pricing Intent
-  else if (
-    query.match(/\b(price|cost|fee|rate|pricing)\b/) ||
-    query.match(/\b(cheap|expensive|affordable|budget)\b/) ||
-    query.startsWith("how much") ||
-    query.includes("$") ||
-    query.includes("dollar")
-  ) {
-    intent = "pricing";
-  }
-  // Seasonal or Promotional Intent - Adding "offers" pattern
-  else if (
-    query.match(/\b(sale|discount|deal|offer|offers|promotion)\b/) ||
-    query.match(/\b(christmas|halloween|black friday|cyber monday)\b/) ||
-    query.match(/\b(season|seasonal|holiday|festival)\b/)
-  ) {
-    intent = "seasonalPromotional";
-  }
-  // Boolean Intent
-  else if (
-    (query.startsWith("can ") ||
-    query.startsWith("is ") ||
-    query.startsWith("are ") ||
-    query.startsWith("does ") ||
-    query.startsWith("do ") ||
-    query.startsWith("will ") ||
-    query.startsWith("should ")) &&
-    query.includes("?")
-  ) {
-    intent = "boolean";
-  }
-  // Consequence Intent
-  else if (
-    query.includes("what happens") ||
-    query.includes("outcome") ||
-    query.includes("result") ||
-    query.includes("effect") ||
-    query.includes("impact") ||
-    query.includes("lead to")
-  ) {
-    intent = "consequence";
-  }
-  // Instruction Intent
-  else if (
-    query.includes("how to") ||
-    query.includes("steps to") ||
-    query.includes("guide") ||
-    query.includes("tutorial") ||
-    query.startsWith("build") ||
-    query.startsWith("create") ||
-    query.startsWith("make")
-  ) {
-    intent = "instruction";
-  }
-  // Comparison Intent
-  else if (
-    query.includes("vs") ||
-    query.includes("versus") ||
-    query.includes("compare") ||
-    query.includes("difference") ||
-    query.includes("better") ||
-    query.includes("worse") ||
-    query.includes("between")
-  ) {
-    intent = "comparison";
-  }
-  // Definition Intent
-  else if (
-    query.startsWith("what is") ||
-    query.startsWith("what are") ||
-    query.includes("meaning") ||
-    query.includes("define") ||
-    query.includes("definition") ||
-    query.includes("explain")
-  ) {
-    intent = "definition";
-  }
-  // Reason Intent
-  else if (
-    query.startsWith("why") ||
-    query.includes("reason") ||
-    query.includes("cause") ||
-    query.includes("because")
-  ) {
-    intent = "reason";
-  }
-  // Short Fact Intent
-  else if (
-    query.startsWith("who") ||
-    query.startsWith("when") ||
-    query.startsWith("where") ||
-    query.startsWith("how many") ||
-    query.startsWith("how much") ||
-    query.startsWith("which") ||
-    query.match(/^what.*(?:date|year|time|number|amount|percentage|rate)/i) ||
-    query.match(/^(capital|population|height|weight|distance|size) of/i) ||
-    query.match(/^(list|name|give|tell).*(?:countries|cities|people|numbers)/i) ||
-    query.match(/^[a-z\s]+ of [a-z\s]+$/i) ||
-    query.match(/^(tallest|shortest|biggest|smallest|longest|highest|lowest)/i)
-  ) {
-    intent = "shortFact";
-  }
-  // Other Intent (queries that are valid but don't fit other categories)
-  else if (query.trim().length > 0) {
-    intent = "other";
-  }
+  // Calculate confidence for each intent
+  const intentScores = Object.entries(intentPatterns).map(([intent, patterns]) => ({
+    intent: intent as QueryIntent,
+    confidence: calculateConfidence(query, patterns)
+  }));
+
+  // Sort by confidence and get the highest scoring intent
+  const sortedScores = intentScores.sort((a, b) => b.confidence - a.confidence);
+  const topIntent = sortedScores[0];
+
+  // If confidence is very low, mark as uncategorized
+  const finalIntent = topIntent.confidence < 0.3 ? {
+    intent: 'uncategorized' as QueryIntent,
+    confidence: 0.1
+  } : topIntent;
 
   return {
-    intent,
+    intent: finalIntent.intent,
+    confidence: Number(finalIntent.confidence.toFixed(2)),
     emotionalTone: analyzeEmotionalTone(query),
     queryDepth: analyzeQueryDepth(query)
   };
