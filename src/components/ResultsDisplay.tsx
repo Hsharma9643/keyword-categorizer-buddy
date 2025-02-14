@@ -7,13 +7,19 @@ import { Download } from "lucide-react";
 import Papa from "papaparse";
 import { QueryIntent, EmotionalTone, QueryDepth } from "@/utils/queryClassifier";
 import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Tooltip as UITooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export interface KeywordResult {
   keyword: string;
   intent: QueryIntent;
   emotionalTone: EmotionalTone;
   queryDepth: QueryDepth;
-  confidence: number;  // Added confidence to the interface
+  confidence: number;
 }
 
 interface ResultsDisplayProps {
@@ -230,10 +236,43 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
           
           {!isMobile && (
             <div className="flex justify-end gap-2 mb-2 text-sm font-medium text-muted-foreground">
-              <span className="w-24 text-center">Intent</span>
-              <span className="w-24 text-center">Confidence</span>
-              <span className="w-24 text-center">Emotional Tone</span>
-              <span className="w-24 text-center">Query Depth</span>
+              <TooltipProvider>
+                <UITooltip>
+                  <TooltipTrigger asChild>
+                    <span className="w-24 text-center cursor-help">Intent</span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>What a user is looking for when they type a keyword into a search engine</p>
+                  </TooltipContent>
+                </UITooltip>
+
+                <UITooltip>
+                  <TooltipTrigger asChild>
+                    <span className="w-24 text-center cursor-help">Confidence</span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Confidence Score indicates how certain the model is about its classification</p>
+                  </TooltipContent>
+                </UITooltip>
+
+                <UITooltip>
+                  <TooltipTrigger asChild>
+                    <span className="w-24 text-center cursor-help">Emotional Tone</span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Advanced language pattern recognition to identify sentiment cues such as urgency, curiosity, or neutrality</p>
+                  </TooltipContent>
+                </UITooltip>
+
+                <UITooltip>
+                  <TooltipTrigger asChild>
+                    <span className="w-24 text-center cursor-help">Query Depth</span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Distinguishes between surface-level and in-depth queries for better content planning</p>
+                  </TooltipContent>
+                </UITooltip>
+              </TooltipProvider>
             </div>
           )}
 
