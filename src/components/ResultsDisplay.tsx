@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
-import { Download } from "lucide-react";
+import { Download, HelpCircle } from "lucide-react";
 import Papa from "papaparse";
 import { QueryIntent, EmotionalTone, QueryDepth } from "@/utils/queryClassifier";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -286,7 +286,21 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   <span className="font-medium mb-2 sm:mb-0">{result.keyword}</span>
                   <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2`}>
                     <div className="flex gap-2 items-center">
-                      {isMobile && <span className="text-sm text-muted-foreground w-24">Intent:</span>}
+                      {isMobile && (
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
+                          Intent:
+                          <TooltipProvider>
+                            <UITooltip>
+                              <TooltipTrigger>
+                                <HelpCircle className="h-4 w-4" />
+                              </TooltipTrigger>
+                              <TooltipContent className="bg-[#333] text-white border-[#333]">
+                                <p>What a user is looking for when they type a keyword into a search engine</p>
+                              </TooltipContent>
+                            </UITooltip>
+                          </TooltipProvider>
+                        </div>
+                      )}
                       <span
                         className="px-3 py-1 rounded-full text-sm font-medium w-full sm:w-24 text-center"
                         style={{
@@ -298,13 +312,41 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                       </span>
                     </div>
                     <div className="flex gap-2 items-center">
-                      {isMobile && <span className="text-sm text-muted-foreground w-24">Confidence:</span>}
+                      {isMobile && (
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
+                          Confidence:
+                          <TooltipProvider>
+                            <UITooltip>
+                              <TooltipTrigger>
+                                <HelpCircle className="h-4 w-4" />
+                              </TooltipTrigger>
+                              <TooltipContent className="bg-[#333] text-white border-[#333]">
+                                <p>Confidence Score indicates how certain the model is about its classification</p>
+                              </TooltipContent>
+                            </UITooltip>
+                          </TooltipProvider>
+                        </div>
+                      )}
                       <span className="px-3 py-1 rounded-full text-sm font-medium bg-gray-700 text-white w-full sm:w-24 text-center">
                         {(result.confidence * 100).toFixed(0)}%
                       </span>
                     </div>
                     <div className="flex gap-2 items-center">
-                      {isMobile && <span className="text-sm text-muted-foreground w-24">Tone:</span>}
+                      {isMobile && (
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
+                          Tone:
+                          <TooltipProvider>
+                            <UITooltip>
+                              <TooltipTrigger>
+                                <HelpCircle className="h-4 w-4" />
+                              </TooltipTrigger>
+                              <TooltipContent className="bg-[#333] text-white border-[#333]">
+                                <p>Advanced language pattern recognition to identify sentiment cues such as urgency, curiosity, or neutrality</p>
+                              </TooltipContent>
+                            </UITooltip>
+                          </TooltipProvider>
+                        </div>
+                      )}
                       <span
                         className="px-3 py-1 rounded-full text-sm font-medium text-white w-full sm:w-24 text-center"
                         style={{
@@ -315,7 +357,21 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                       </span>
                     </div>
                     <div className="flex gap-2 items-center">
-                      {isMobile && <span className="text-sm text-muted-foreground w-24">Depth:</span>}
+                      {isMobile && (
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
+                          Depth:
+                          <TooltipProvider>
+                            <UITooltip>
+                              <TooltipTrigger>
+                                <HelpCircle className="h-4 w-4" />
+                              </TooltipTrigger>
+                              <TooltipContent className="bg-[#333] text-white border-[#333]">
+                                <p>Distinguishes between surface-level and in-depth queries for better content planning</p>
+                              </TooltipContent>
+                            </UITooltip>
+                          </TooltipProvider>
+                        </div>
+                      )}
                       <span
                         className="px-3 py-1 rounded-full text-sm font-medium text-white w-full sm:w-24 text-center"
                         style={{
