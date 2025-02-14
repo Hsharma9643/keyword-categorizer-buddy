@@ -241,7 +241,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   <TooltipTrigger asChild>
                     <span className="w-24 text-center cursor-help">Intent</span>
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent className="bg-[#333] text-white border-[#333]">
                     <p>What a user is looking for when they type a keyword into a search engine</p>
                   </TooltipContent>
                 </UITooltip>
@@ -250,7 +250,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   <TooltipTrigger asChild>
                     <span className="w-24 text-center cursor-help">Confidence</span>
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent className="bg-[#333] text-white border-[#333]">
                     <p>Confidence Score indicates how certain the model is about its classification</p>
                   </TooltipContent>
                 </UITooltip>
@@ -259,7 +259,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   <TooltipTrigger asChild>
                     <span className="w-24 text-center cursor-help">Emotional Tone</span>
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent className="bg-[#333] text-white border-[#333]">
                     <p>Advanced language pattern recognition to identify sentiment cues such as urgency, curiosity, or neutrality</p>
                   </TooltipContent>
                 </UITooltip>
@@ -268,7 +268,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   <TooltipTrigger asChild>
                     <span className="w-24 text-center cursor-help">Query Depth</span>
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent className="bg-[#333] text-white border-[#333]">
                     <p>Distinguishes between surface-level and in-depth queries for better content planning</p>
                   </TooltipContent>
                 </UITooltip>
