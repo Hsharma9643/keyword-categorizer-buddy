@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -12,6 +13,7 @@ export interface KeywordResult {
   intent: QueryIntent;
   emotionalTone: EmotionalTone;
   queryDepth: QueryDepth;
+  confidence: number;  // Added confidence to the interface
 }
 
 interface ResultsDisplayProps {
@@ -24,7 +26,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
 
   const copyResults = () => {
     const text = results
-      .map((r) => `${r.keyword} - Intent: ${r.intent}, Tone: ${r.emotionalTone}, Depth: ${r.queryDepth}`)
+      .map((r) => `${r.keyword} - Intent: ${r.intent} (${(r.confidence * 100).toFixed(0)}% confidence), Tone: ${r.emotionalTone}, Depth: ${r.queryDepth}`)
       .join("\n");
     navigator.clipboard.writeText(text);
     toast({
@@ -37,6 +39,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     const csv = Papa.unparse(results.map(result => ({
       Keyword: result.keyword,
       Intent: result.intent,
+      Confidence: `${(result.confidence * 100).toFixed(0)}%`,
       "Emotional Tone": result.emotionalTone,
       "Query Depth": result.queryDepth
     })));
@@ -228,6 +231,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
           {!isMobile && (
             <div className="flex justify-end gap-2 mb-2 text-sm font-medium text-muted-foreground">
               <span className="w-24 text-center">Intent</span>
+              <span className="w-24 text-center">Confidence</span>
               <span className="w-24 text-center">Emotional Tone</span>
               <span className="w-24 text-center">Query Depth</span>
             </div>
@@ -252,6 +256,12 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                         }}
                       >
                         {result.intent}
+                      </span>
+                    </div>
+                    <div className="flex gap-2 items-center">
+                      {isMobile && <span className="text-sm text-muted-foreground w-24">Confidence:</span>}
+                      <span className="px-3 py-1 rounded-full text-sm font-medium bg-gray-700 text-white w-full sm:w-24 text-center">
+                        {(result.confidence * 100).toFixed(0)}%
                       </span>
                     </div>
                     <div className="flex gap-2 items-center">
