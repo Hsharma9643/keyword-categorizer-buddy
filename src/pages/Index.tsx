@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
@@ -7,6 +6,7 @@ import { useToast } from "@/components/ui/use-toast";
 import Footer from "@/components/Footer";
 import { X, Facebook, Linkedin } from "lucide-react";
 import Header from "@/components/Header";
+import { ReviewMisclassifications } from "@/components/ReviewMisclassifications";
 
 const Index = () => {
   const [results, setResults] = useState<KeywordResult[]>([]);
@@ -267,6 +267,8 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
+      <ReviewMisclassifications />
       
       <div className="text-center text-sm text-muted-foreground pb-4">
         <p>This SEO Keyword Intent Classifier Tool is created by <a href="https://www.linkedin.com/in/hemantsharmax/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Hemant Sharma</a> at Adschoolmaster.</p>
