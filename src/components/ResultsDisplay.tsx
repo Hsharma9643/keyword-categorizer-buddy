@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -7,6 +6,11 @@ import { Download, HelpCircle } from "lucide-react";
 import Papa from "papaparse";
 import { QueryIntent, EmotionalTone, QueryDepth } from "@/utils/queryClassifier";
 import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   Tooltip as UITooltip,
   TooltipContent,
@@ -131,6 +135,37 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
     detailed: "#4B5563"
   };
 
+  const TooltipWrapper = ({ label, description }: { label: string; description: string }) => {
+    if (isMobile) {
+      return (
+        <Dialog>
+          <DialogTrigger asChild>
+            <div className="flex items-center gap-1 text-sm text-muted-foreground">
+              {label}:
+              <HelpCircle className="h-4 w-4" />
+            </div>
+          </DialogTrigger>
+          <DialogContent className="bg-[#333] text-white border-none w-[90%] max-w-[350px]">
+            <p className="text-sm">{description}</p>
+          </DialogContent>
+        </Dialog>
+      );
+    }
+
+    return (
+      <TooltipProvider>
+        <UITooltip>
+          <TooltipTrigger asChild>
+            <span className="w-24 text-center cursor-help">{label}</span>
+          </TooltipTrigger>
+          <TooltipContent className="bg-[#333] text-white border-[#333]">
+            <p>{description}</p>
+          </TooltipContent>
+        </UITooltip>
+      </TooltipProvider>
+    );
+  };
+
   return (
     <div className="space-y-6">
       <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-3'} gap-4`}>
@@ -236,43 +271,22 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
           
           {!isMobile && (
             <div className="flex justify-end gap-2 mb-2 text-sm font-medium text-muted-foreground">
-              <TooltipProvider>
-                <UITooltip>
-                  <TooltipTrigger asChild>
-                    <span className="w-24 text-center cursor-help">Intent</span>
-                  </TooltipTrigger>
-                  <TooltipContent className="bg-[#333] text-white border-[#333]">
-                    <p>What a user is looking for when they type a keyword into a search engine</p>
-                  </TooltipContent>
-                </UITooltip>
-
-                <UITooltip>
-                  <TooltipTrigger asChild>
-                    <span className="w-24 text-center cursor-help">Confidence</span>
-                  </TooltipTrigger>
-                  <TooltipContent className="bg-[#333] text-white border-[#333]">
-                    <p>Confidence Score indicates how certain the model is about its classification</p>
-                  </TooltipContent>
-                </UITooltip>
-
-                <UITooltip>
-                  <TooltipTrigger asChild>
-                    <span className="w-24 text-center cursor-help">Emotional Tone</span>
-                  </TooltipTrigger>
-                  <TooltipContent className="bg-[#333] text-white border-[#333]">
-                    <p>Advanced language pattern recognition to identify sentiment cues such as urgency, curiosity, or neutrality</p>
-                  </TooltipContent>
-                </UITooltip>
-
-                <UITooltip>
-                  <TooltipTrigger asChild>
-                    <span className="w-24 text-center cursor-help">Query Depth</span>
-                  </TooltipTrigger>
-                  <TooltipContent className="bg-[#333] text-white border-[#333]">
-                    <p>Distinguishes between surface-level and in-depth queries for better content planning</p>
-                  </TooltipContent>
-                </UITooltip>
-              </TooltipProvider>
+              <TooltipWrapper 
+                label="Intent"
+                description="What a user is looking for when they type a keyword into a search engine"
+              />
+              <TooltipWrapper 
+                label="Confidence"
+                description="Confidence Score indicates how certain the model is about its classification"
+              />
+              <TooltipWrapper 
+                label="Emotional Tone"
+                description="Advanced language pattern recognition to identify sentiment cues such as urgency, curiosity, or neutrality"
+              />
+              <TooltipWrapper 
+                label="Query Depth"
+                description="Distinguishes between surface-level and in-depth queries for better content planning"
+              />
             </div>
           )}
 
@@ -287,18 +301,11 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                   <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2`}>
                     <div className="flex gap-2 items-center">
                       {isMobile && (
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
-                          Intent:
-                          <TooltipProvider delayDuration={0}>
-                            <UITooltip>
-                              <TooltipTrigger>
-                                <HelpCircle className="h-4 w-4" />
-                              </TooltipTrigger>
-                              <TooltipContent className="bg-[#333] text-white border-[#333] touch-none">
-                                <p>What a user is looking for when they type a keyword into a search engine</p>
-                              </TooltipContent>
-                            </UITooltip>
-                          </TooltipProvider>
+                        <div className="w-24">
+                          <TooltipWrapper 
+                            label="Intent"
+                            description="What a user is looking for when they type a keyword into a search engine"
+                          />
                         </div>
                       )}
                       <span
@@ -313,18 +320,11 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                     </div>
                     <div className="flex gap-2 items-center">
                       {isMobile && (
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
-                          Confidence:
-                          <TooltipProvider delayDuration={0}>
-                            <UITooltip>
-                              <TooltipTrigger>
-                                <HelpCircle className="h-4 w-4" />
-                              </TooltipTrigger>
-                              <TooltipContent className="bg-[#333] text-white border-[#333] touch-none">
-                                <p>Confidence Score indicates how certain the model is about its classification</p>
-                              </TooltipContent>
-                            </UITooltip>
-                          </TooltipProvider>
+                        <div className="w-24">
+                          <TooltipWrapper 
+                            label="Confidence"
+                            description="Confidence Score indicates how certain the model is about its classification"
+                          />
                         </div>
                       )}
                       <span className="px-3 py-1 rounded-full text-sm font-medium bg-gray-700 text-white w-full sm:w-24 text-center">
@@ -333,18 +333,11 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                     </div>
                     <div className="flex gap-2 items-center">
                       {isMobile && (
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
-                          Tone:
-                          <TooltipProvider delayDuration={0}>
-                            <UITooltip>
-                              <TooltipTrigger>
-                                <HelpCircle className="h-4 w-4" />
-                              </TooltipTrigger>
-                              <TooltipContent className="bg-[#333] text-white border-[#333] touch-none">
-                                <p>Advanced language pattern recognition to identify sentiment cues such as urgency, curiosity, or neutrality</p>
-                              </TooltipContent>
-                            </UITooltip>
-                          </TooltipProvider>
+                        <div className="w-24">
+                          <TooltipWrapper 
+                            label="Tone"
+                            description="Advanced language pattern recognition to identify sentiment cues such as urgency, curiosity, or neutrality"
+                          />
                         </div>
                       )}
                       <span
@@ -358,18 +351,11 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                     </div>
                     <div className="flex gap-2 items-center">
                       {isMobile && (
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
-                          Depth:
-                          <TooltipProvider delayDuration={0}>
-                            <UITooltip>
-                              <TooltipTrigger>
-                                <HelpCircle className="h-4 w-4" />
-                              </TooltipTrigger>
-                              <TooltipContent className="bg-[#333] text-white border-[#333] touch-none">
-                                <p>Distinguishes between surface-level and in-depth queries for better content planning</p>
-                              </TooltipContent>
-                            </UITooltip>
-                          </TooltipProvider>
+                        <div className="w-24">
+                          <TooltipWrapper 
+                            label="Depth"
+                            description="Distinguishes between surface-level and in-depth queries for better content planning"
+                          />
                         </div>
                       )}
                       <span
