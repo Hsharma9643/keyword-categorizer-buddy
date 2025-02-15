@@ -40,47 +40,63 @@ interface PatternMatch {
 
 const intentPatterns: Record<QueryIntent, PatternMatch[]> = {
   product: [
-    { pattern: /\b(buy|purchase|shop|shopping|order)\b/, weight: 0.8 },
-    { pattern: /\b(product|item|device|gadget|equipment)\b/, weight: 0.7 },
-    { pattern: /\b(laptop|phone|camera|watch|clothing|shoes)\b/, weight: 0.6 },
-    { pattern: /\b(new|latest)\b.*\b(product|item|device)\b/, weight: 0.9 }
+    { pattern: /\b(buy|purchase|shop|shopping|order)\b/i, weight: 0.8 },
+    { pattern: /\b(product|item|device|gadget|equipment)\b/i, weight: 0.7 },
+    { pattern: /\b(laptop|phone|camera|watch|clothing|shoes)\b/i, weight: 0.6 },
+    { pattern: /\b(new|latest)\b.*\b(product|item|device)\b/i, weight: 0.9 },
+    { pattern: /\b(recommend|suggest)\b.*\b(product|item)\b/i, weight: 0.85 },
+    { pattern: /\bwhere\b.*\b(buy|get|find)\b/i, weight: 0.75 }
   ],
   explicitLocal: [
-    { pattern: "near me", weight: 0.9 },
-    { pattern: /\b(in|at|around|near) [A-Z][a-z]+/, weight: 0.8 },
-    { pattern: /\b(local|nearby|closest)\b/, weight: 0.7 },
-    { pattern: /\b(city|town|state|country|region)\b/, weight: 0.6 }
+    { pattern: /\bnear\s+me\b/i, weight: 0.9 },
+    { pattern: /\b(in|at|around|near)\s+[A-Z][a-z]+/i, weight: 0.8 },
+    { pattern: /\b(local|nearby|closest)\b/i, weight: 0.7 },
+    { pattern: /\b(city|town|state|country|region)\b/i, weight: 0.6 },
+    { pattern: /\bwithin\s+\d+\s+(miles|km|kilometers)\b/i, weight: 0.85 },
+    { pattern: /\blocal\s+area\b/i, weight: 0.75 }
   ],
   service: [
-    { pattern: /\b(service|provider|consultant|agency)\b/, weight: 0.8 },
-    { pattern: /\b(repair|maintenance|installation|support)\b/, weight: 0.7 },
-    { pattern: "how to get", weight: 0.6 },
-    { pattern: "who can", weight: 0.6 }
+    { pattern: /\b(service|provider|consultant|agency)\b/i, weight: 0.8 },
+    { pattern: /\b(repair|maintenance|installation|support)\b/i, weight: 0.7 },
+    { pattern: /\bhow\s+to\s+get\b/i, weight: 0.6 },
+    { pattern: /\bwho\s+can\b/i, weight: 0.6 },
+    { pattern: /\b(hire|book|schedule)\b.*\b(service|provider)\b/i, weight: 0.85 },
+    { pattern: /\b(need|looking\s+for)\b.*\b(service|help)\b/i, weight: 0.75 }
   ],
   brand: [
-    { pattern: /\b(brand|manufacturer|company|vendor)\b/, weight: 0.7 },
-    { pattern: /\b(nike|adidas|apple|samsung|google|amazon)\b/, weight: 0.9 },
-    { pattern: /[A-Z][a-z]+'s/, weight: 0.6 }
+    { pattern: /\b(brand|manufacturer|company|vendor)\b/i, weight: 0.7 },
+    { pattern: /\b(nike|adidas|apple|samsung|google|amazon)\b/i, weight: 0.9 },
+    { pattern: /[A-Z][a-z]+'s\b/i, weight: 0.6 },
+    { pattern: /\bby\s+[A-Z][a-z]+\b/i, weight: 0.65 },
+    { pattern: /\b(official|authorized)\b.*\b(dealer|retailer|store)\b/i, weight: 0.8 }
   ],
   featureAttribute: [
-    { pattern: /\b(feature|specification|characteristic|property)\b/, weight: 0.8 },
-    { pattern: /\b(size|color|weight|height|width|length)\b/, weight: 0.7 },
-    { pattern: /\b(vegan|organic|wireless|waterproof|sustainable)\b/, weight: 0.7 }
+    { pattern: /\b(feature|specification|characteristic|property)\b/i, weight: 0.8 },
+    { pattern: /\b(size|color|weight|height|width|length)\b/i, weight: 0.7 },
+    { pattern: /\b(vegan|organic|wireless|waterproof|sustainable)\b/i, weight: 0.7 },
+    { pattern: /\b(made|built|designed)\b.*\b(with|from|using)\b/i, weight: 0.75 },
+    { pattern: /\b(what|which)\b.*\b(features|specs)\b/i, weight: 0.85 }
   ],
   pricing: [
-    { pattern: /\b(price|cost|fee|rate|pricing)\b/, weight: 0.8 },
-    { pattern: /\b(cheap|expensive|affordable|budget)\b/, weight: 0.7 },
-    { pattern: "how much", weight: 0.9 },
-    { pattern: /\$|\$[0-9]+/, weight: 0.9 }
+    { pattern: /\b(price|cost|fee|rate|pricing)\b/i, weight: 0.8 },
+    { pattern: /\b(cheap|expensive|affordable|budget)\b/i, weight: 0.7 },
+    { pattern: /\bhow\s+much\b/i, weight: 0.9 },
+    { pattern: /\$|\$[0-9]+/i, weight: 0.9 },
+    { pattern: /\b(under|over|between)\b.*\$\d+/i, weight: 0.85 },
+    { pattern: /\b(price|cost)\b.*\b(range|comparison)\b/i, weight: 0.8 }
   ],
   seasonalPromotional: [
-    { pattern: /\b(sale|discount|deal|offer|promotion)\b/, weight: 0.8 },
-    { pattern: /\b(christmas|halloween|black friday|cyber monday)\b/, weight: 0.9 },
-    { pattern: /\b(season|seasonal|holiday|festival)\b/, weight: 0.7 }
+    { pattern: /\b(sale|discount|deal|offer|promotion)\b/i, weight: 0.8 },
+    { pattern: /\b(christmas|halloween|black\s+friday|cyber\s+monday)\b/i, weight: 0.9 },
+    { pattern: /\b(season|seasonal|holiday|festival)\b/i, weight: 0.7 },
+    { pattern: /\b(special|limited\s+time)\b.*\b(offer|deal)\b/i, weight: 0.85 },
+    { pattern: /\b(early|exclusive)\b.*\b(access|discount)\b/i, weight: 0.8 }
   ],
   boolean: [
-    { pattern: /^(can|is|are|does|do|will|should) .*\?$/, weight: 0.9 },
-    { pattern: /\b(possible|allowed|available)\b/, weight: 0.7 }
+    { pattern: /^(can|is|are|does|do|will|should)\b.*\?$/i, weight: 0.9 },
+    { pattern: /\b(possible|allowed|available)\b/i, weight: 0.7 },
+    { pattern: /^(yes|no)\b.*\b(question|answer)\b/i, weight: 0.8 },
+    { pattern: /\b(true|false)\b.*\b(statement|claim)\b/i, weight: 0.85 }
   ],
   consequence: [
     { pattern: "what happens", weight: 0.9 },
@@ -122,10 +138,19 @@ const calculateConfidence = (query: string, patterns: PatternMatch[]): number =>
   let maxConfidence = 0;
   let matches = 0;
   let totalWeight = 0;
+  let contextualBoost = 1;
+
+  // Convert query to lowercase for case-insensitive matching
+  query = query.toLowerCase();
+
+  // Additional context rules
+  if (query.length > 50) contextualBoost *= 1.1; // Longer queries often have more context
+  if (query.includes('?')) contextualBoost *= 1.05; // Questions are often more intentful
+  if (/\b(need|want|looking for)\b/i.test(query)) contextualBoost *= 1.15; // Direct intent indicators
 
   patterns.forEach(({ pattern, weight }) => {
     const isMatch = typeof pattern === 'string' 
-      ? query.includes(pattern)
+      ? query.includes(pattern.toLowerCase())
       : pattern.test(query);
     
     if (isMatch) {
@@ -135,12 +160,15 @@ const calculateConfidence = (query: string, patterns: PatternMatch[]): number =>
     }
   });
 
-  // Calculate final confidence score
+  // If no matches found, return 0
   if (matches === 0) return 0;
   
-  // Weighted average between highest single match and overall match ratio
+  // Calculate weighted score
   const matchRatio = totalWeight / patterns.length;
-  return Math.min(0.7 * maxConfidence + 0.3 * matchRatio, 1);
+  const baseConfidence = 0.7 * maxConfidence + 0.3 * matchRatio;
+  
+  // Apply contextual boost and ensure confidence doesn't exceed 1
+  return Math.min(baseConfidence * contextualBoost, 1);
 };
 
 const analyzeEmotionalTone = (query: string): EmotionalTone => {
