@@ -289,12 +289,12 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                       {isMobile && (
                         <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
                           Intent:
-                          <TooltipProvider>
+                          <TooltipProvider delayDuration={0}>
                             <UITooltip>
                               <TooltipTrigger>
                                 <HelpCircle className="h-4 w-4" />
                               </TooltipTrigger>
-                              <TooltipContent className="bg-[#333] text-white border-[#333]">
+                              <TooltipContent className="bg-[#333] text-white border-[#333] touch-none">
                                 <p>What a user is looking for when they type a keyword into a search engine</p>
                               </TooltipContent>
                             </UITooltip>
@@ -315,12 +315,12 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                       {isMobile && (
                         <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
                           Confidence:
-                          <TooltipProvider>
+                          <TooltipProvider delayDuration={0}>
                             <UITooltip>
                               <TooltipTrigger>
                                 <HelpCircle className="h-4 w-4" />
                               </TooltipTrigger>
-                              <TooltipContent className="bg-[#333] text-white border-[#333]">
+                              <TooltipContent className="bg-[#333] text-white border-[#333] touch-none">
                                 <p>Confidence Score indicates how certain the model is about its classification</p>
                               </TooltipContent>
                             </UITooltip>
@@ -335,12 +335,12 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                       {isMobile && (
                         <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
                           Tone:
-                          <TooltipProvider>
+                          <TooltipProvider delayDuration={0}>
                             <UITooltip>
                               <TooltipTrigger>
                                 <HelpCircle className="h-4 w-4" />
                               </TooltipTrigger>
-                              <TooltipContent className="bg-[#333] text-white border-[#333]">
+                              <TooltipContent className="bg-[#333] text-white border-[#333] touch-none">
                                 <p>Advanced language pattern recognition to identify sentiment cues such as urgency, curiosity, or neutrality</p>
                               </TooltipContent>
                             </UITooltip>
@@ -360,12 +360,12 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                       {isMobile && (
                         <div className="flex items-center gap-1 text-sm text-muted-foreground w-24">
                           Depth:
-                          <TooltipProvider>
+                          <TooltipProvider delayDuration={0}>
                             <UITooltip>
                               <TooltipTrigger>
                                 <HelpCircle className="h-4 w-4" />
                               </TooltipTrigger>
-                              <TooltipContent className="bg-[#333] text-white border-[#333]">
+                              <TooltipContent className="bg-[#333] text-white border-[#333] touch-none">
                                 <p>Distinguishes between surface-level and in-depth queries for better content planning</p>
                               </TooltipContent>
                             </UITooltip>
