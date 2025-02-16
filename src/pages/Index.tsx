@@ -5,10 +5,10 @@ import { classifyQuery } from "@/utils/queryClassifier";
 import { useToast } from "@/components/ui/use-toast";
 import Footer from "@/components/Footer";
 import { X, Facebook, Linkedin } from "lucide-react";
-import Header from "@/components/Header";
+import { Header } from "@/components/Header";
 import { ReviewMisclassifications } from "@/components/ReviewMisclassifications";
 
-const Index = () => {
+export const Index = () => {
   const [results, setResults] = useState<KeywordResult[]>([]);
   const { toast } = useToast();
 
@@ -20,7 +20,7 @@ const Index = () => {
           return {
             keyword,
             intent: analysis.intent,
-            confidence: analysis.confidence, // Added confidence score
+            confidence: analysis.confidence,
             emotionalTone: analysis.emotionalTone,
             queryDepth: analysis.queryDepth
           };
