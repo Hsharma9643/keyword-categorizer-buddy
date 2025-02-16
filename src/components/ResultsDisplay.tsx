@@ -17,7 +17,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { QueryFeedback } from "./QueryFeedback";
 
 export interface KeywordResult {
   keyword: string;
@@ -298,13 +297,7 @@ export const ResultsDisplay = ({ results }: ResultsDisplayProps) => {
                 className="p-4 bg-muted rounded-lg space-y-2"
               >
                 <div className={`flex ${isMobile ? 'flex-col gap-2' : 'items-center justify-between'}`}>
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium mb-2 sm:mb-0">{result.keyword}</span>
-                    <QueryFeedback 
-                      keyword={result.keyword}
-                      currentIntent={result.intent}
-                    />
-                  </div>
+                  <span className="font-medium mb-2 sm:mb-0">{result.keyword}</span>
                   <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2`}>
                     <div className="flex gap-2 items-center">
                       {isMobile && (
