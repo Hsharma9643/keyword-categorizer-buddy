@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { KeywordInput } from "@/components/KeywordInput";
@@ -22,30 +21,11 @@ import { Button } from "@/components/ui/button";
 
 export const Index = () => {
   const [results, setResults] = useState<KeywordResult[]>([]);
-  const [showAuthDialog, setShowAuthDialog] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  const checkUsage = async () => {
-    try {
-      const { data, error } = await supabase.functions.invoke('track-usage', {
-        method: 'POST',
-      });
-
-      if (error) throw error;
-
-      if (data.requiresAuth) {
-        setShowAuthDialog(true);
-      }
-    } catch (error) {
-      console.error('Error checking usage:', error);
-    }
-  };
-
   const handleAnalyze = async (keywords: string[]) => {
     try {
-      await checkUsage();
-      
       const classifiedResults = await Promise.all(
         keywords.map(async (keyword) => {
           const analysis = await classifyQuery(keyword);
@@ -307,25 +287,6 @@ export const Index = () => {
       </div>
       
       <Footer />
-
-      <Dialog open={showAuthDialog} onOpenChange={setShowAuthDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Free Trial Limit Reached</DialogTitle>
-            <DialogDescription>
-              You've reached the limit of 5 free analyses. Sign up for free to continue using the tool with unlimited access!
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setShowAuthDialog(false)}>
-              Cancel
-            </Button>
-            <Button onClick={() => navigate('/auth')}>
-              Sign Up Now
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

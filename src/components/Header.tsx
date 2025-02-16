@@ -19,7 +19,7 @@ export const Header = () => {
         variant: "destructive",
       });
     } else {
-      navigate('/auth');
+      navigate('/');
     }
   };
 
@@ -27,12 +27,19 @@ export const Header = () => {
     <header className="border-b">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold">SEO Keyword Classifier</h1>
-        {user && (
+        {user ? (
           <Button
             variant="outline"
             onClick={handleLogout}
           >
             Sign Out
+          </Button>
+        ) : (
+          <Button
+            variant="outline"
+            onClick={() => navigate('/auth')}
+          >
+            Sign In
           </Button>
         )}
       </div>
@@ -40,5 +47,4 @@ export const Header = () => {
   );
 };
 
-// Add default export
 export default Header;
