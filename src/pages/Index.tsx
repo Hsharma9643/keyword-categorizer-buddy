@@ -1,6 +1,7 @@
+
 import { useState } from 'react';
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import Footer from "@/components/Footer";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay } from "@/components/ResultsDisplay";
 import { ReviewMisclassifications } from "@/components/ReviewMisclassifications";
