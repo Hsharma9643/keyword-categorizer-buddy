@@ -39,3 +39,6 @@ export const Header = () => {
     </header>
   );
 };
+
+// Add default export
+export default Header;
