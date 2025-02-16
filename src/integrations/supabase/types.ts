@@ -9,6 +9,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      anonymous_usage: {
+        Row: {
+          created_at: string | null
+          id: string
+          ip_address: string
+          last_used_at: string | null
+          usage_count: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          ip_address: string
+          last_used_at?: string | null
+          usage_count?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          ip_address?: string
+          last_used_at?: string | null
+          usage_count?: number | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
