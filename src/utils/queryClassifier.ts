@@ -66,6 +66,8 @@ const intentPatterns: Record<QueryIntent, PatternMatch[]> = {
   brand: [
     { pattern: /\b(brand|manufacturer|company|vendor)\b/i, weight: 0.7 },
     { pattern: /\b(nike|adidas|apple|samsung|google|amazon)\b/i, weight: 0.9 },
+    { pattern: /\b(adschoolmaster|backlinko|ahrefs|semrush)\b/i, weight: 0.95 },
+    { pattern: /\b(reebok|puma|under\s*armour|new\s*balance)\b/i, weight: 0.9 },
     { pattern: /[A-Z][a-z]+'s\b/i, weight: 0.6 },
     { pattern: /\bby\s+[A-Z][a-z]+\b/i, weight: 0.65 },
     { pattern: /\b(official|authorized)\b.*\b(dealer|retailer|store)\b/i, weight: 0.8 }
