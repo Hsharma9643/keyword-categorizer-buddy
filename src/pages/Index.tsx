@@ -236,8 +236,6 @@ const Index = () => {
               </p>
             </div>
 
-            
-
             <div className="flex justify-center space-x-4 pb-8">
               <button
                 onClick={() => handleShare('twitter')}
