@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { KeywordInput } from "@/components/KeywordInput";
 import { ResultsDisplay, KeywordResult } from "@/components/ResultsDisplay";
@@ -20,7 +19,7 @@ const Index = () => {
           return {
             keyword,
             intent: analysis.intent,
-            confidence: analysis.confidence, // Added confidence score
+            confidence: analysis.confidence,
             emotionalTone: analysis.emotionalTone,
             queryDepth: analysis.queryDepth
           };
@@ -237,9 +236,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="text-center text-sm text-muted-foreground">
-              <p>Disclaimer: This page's content was created using DeepSeek.</p>
-            </div>
+            
 
             <div className="flex justify-center space-x-4 pb-8">
               <button
